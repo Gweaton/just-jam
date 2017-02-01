@@ -1,0 +1,21 @@
+extends ../../views/layout
+
+block content
+  h1 Enter your details to start jammin
+  
+  form(action='/users', method='post')
+    label#name(for='name') Name:
+    input(type='text', name='name')
+    label#username(for='username') Username:
+    input(type='text', name='username')
+    label#email(for='email') Email:
+    input(type='email', name='email')
+    label#location(for='location') Location:
+    input(type='text', name='location')
+    label#genres(for='genres') Genres:
+    input(type='text', name='genres')
+    label#instruments(for='instruments') Instruments:
+    input(type='text', name='instruments')
+    label#bio(for='bio') Bio:
+    input(type='text', name='bio')
+    input(type='submit', value="Get Jammin'")

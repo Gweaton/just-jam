@@ -11,5 +11,9 @@ router.get('/', function(req, res, next) {
   })
 });
 
+router.get('/new', function(req, res) {
+  res.render('users/new');
+})
+
 
 module.exports = router;
