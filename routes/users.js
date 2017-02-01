@@ -15,5 +15,12 @@ router.get('/new', function(req, res) {
   res.render('users/new');
 })
 
+router.get('/:username', function(req, res) {
+  User.findOne({'username': req.params.username}, function(err, user) {
+    console.log(user)
+    res.render('users/show', { user: user });
+  });
+});
+
 
 module.exports = router;

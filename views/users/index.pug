@@ -5,8 +5,10 @@ block content
   h1 Jammers...
 
   ul
-    - for (var i=0; i<users.length; i++)
-      li
-        ul
-          li= users[i].username
-          li= users[i].name
+    each user, i in users
+        li
+          ul
+            li= user.username
+            li= user.name
+            li
+              a(href=`/users/${user.username}`) Show
