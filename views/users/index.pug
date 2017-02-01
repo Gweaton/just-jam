@@ -1,0 +1,12 @@
+extends ../../views/layout
+
+block content
+
+  h1 Jammers...
+
+  ul
+    - for (var i=0; i<users.length; i++)
+      li
+        ul
+          li= users[i].username
+          li= users[i].name

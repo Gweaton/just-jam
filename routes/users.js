@@ -7,8 +7,7 @@ router.get('/', function(req, res, next) {
   let query = User.find({});
   query.exec(function(err, users) {
     if (err) return console.log(err)
-    // res.render('users/index.ejs', {users: users})
-    res.send('respond with a resource');
+    res.render('users/index', {users: users})
   })
 });
 
