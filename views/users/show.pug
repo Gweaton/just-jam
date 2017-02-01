@@ -3,4 +3,11 @@ extends ../../views/layout
 block content
 
   h1= user.name
-  h2= user.username
+
+  ul
+    li= user.username
+    li= user.email
+    li= user.location
+    li= user.genres
+    li= user.instruments
+    li= user.bio
