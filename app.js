@@ -17,10 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', index);
 app.use('/users', users);
 
-// app.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
 if(process.env.NODE_ENV === "test"){
     db = mongoose.connect(config.test_db);
   	app.listen(config.test_port);
