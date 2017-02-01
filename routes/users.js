@@ -11,9 +11,17 @@ router.get('/', function(req, res, next) {
   })
 });
 
+router.post('/', function(req, res) {
+  var newUser = User(req.body);
+  newUser.save(function(err) {
+    if (err) throw err;
+    res.redirect('users/');
+  });
+});
+
 router.get('/new', function(req, res) {
   res.render('users/new');
-})
+});
 
 router.get('/:username', function(req, res) {
   User.findOne({'username': req.params.username}, function(err, user) {
