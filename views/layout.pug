@@ -14,4 +14,8 @@ html
             a(class='nav-item' href='/users/') View all jammers
           li
             a(class='nav-item' href='/users/new') Make a profile
+          if (currentUser)
+            li
+              a(class='nav-item' href='/logout') Sign out
+
     block content
