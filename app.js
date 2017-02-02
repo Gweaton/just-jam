@@ -15,7 +15,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 var session = require('express-session');
 
-// var configDB = require('./config/database.js');
+var configDB = require('./config/database.js');
 // mongoose.connect(configDB.url);
 
 // view engine setup
@@ -35,7 +35,7 @@ app.use(flash());
 app.use('/', index);
 app.use('/users', users);
 
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 if(process.env.NODE_ENV === "test"){
     db = mongoose.connect(config.test_db);
