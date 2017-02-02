@@ -1,6 +1,29 @@
-var express = require('express');
-var router = express.Router();
-var User = require('../models/user')
+require('../env.js')
+
+const express = require('express');
+const router = express.Router();
+const User = require('../models/user')
+
+const aws = require('aws-sdk')
+const multer = require('multer')
+const multerS3 = require('multer-s3')
+
+const s3 = new aws.S3({
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  region: process.env.AWS_REGION
+})
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    dirname: '/',
+    bucket: process.env.AWS_BUCKET,
+    region:  process.env.AWS_REGION,
+    acl: 'public-read',
+    contentType: multerS3.AUTO_CONTENT_TYPE
+  })
+});
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -11,8 +34,10 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post('/', function(req, res) {
-  var newUser = User(req.body);
+router.post('/', upload.single('image'), function(req, res) {
+  var newUser =  User(req.body)
+  newUser.imagePath = req.file.location
+  console.log(newUser)
   newUser.save(function(err) {
     if (err) throw err;
     res.redirect('users/');
