@@ -35,9 +35,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', upload.single('image'), function(req, res) {
-  var newUser =  User(req.body)
+  var newUser = User(req.body)
   newUser.imagePath = req.file.location
-  console.log(newUser)
   newUser.save(function(err) {
     if (err) throw err;
     res.redirect('users/');
@@ -50,7 +49,6 @@ router.get('/new', function(req, res) {
 
 router.get('/:username', function(req, res) {
   User.findOne({'username': req.params.username}, function(err, user) {
-    console.log(user)
     res.render('users/show', { user: user });
   });
 });
