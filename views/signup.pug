@@ -8,12 +8,8 @@ block content
           span.fa.fa-sign-in
           |  Signup
 
-        if message != null
-          d(class="alert-danger")=message
-
-        if message && message.length
-          strong #{message}
-
+        if message.length
+          .alert.alert-danger #{message}
 
         form(action='/signup', method='post')
           .form-group
@@ -30,5 +26,5 @@ block content
         a(href='/login')  Login
       p
         | Or go
-        a(href='/') home
+        a(href='/')  home
         | .

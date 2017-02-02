@@ -8,12 +8,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
+  // console.log(req.flash('loginMessage'))
   res.render('login', { message: req.flash('loginMessage') });
 });
 
 router.get('/signup', function(req, res) {
-  console.log(req.flash('loginMessage'))
-  res.render('signup', { message: req.flash('loginMessage') });
+  // console.log(req.flash('signupMessage'))
+  res.render('signup', { message: req.flash('signupMessage') });
 });
 
 router.get('/profile', isLoggedIn, function(req, res) {
