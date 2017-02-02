@@ -12,6 +12,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/signup', function(req, res) {
+  console.log(req.flash('loginMessage'))
   res.render('signup', { message: req.flash('loginMessage') });
 });
 

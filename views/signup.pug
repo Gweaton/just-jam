@@ -11,6 +11,9 @@ block content
         if message != null
           d(class="alert-danger")=message
 
+        if message && message.length
+          strong #{message}
+
 
         form(action='/signup', method='post')
           .form-group
