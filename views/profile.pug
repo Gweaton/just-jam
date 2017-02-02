@@ -7,13 +7,13 @@ block content
         h1.fa.fa-user  Profile
         br
         span
-          strong user id
-          strong= user.local.email
+          strong User:
+          strong= currentUser.local.email
         br
         span.fa.fa-sign-out
           a(href='/')  Sign out
         hr
         .jumbotron
-          if user.local.email != null
+          if currentUser.local.email != null
             img(src="https://static-s.aa-cdn.net/img/ios/599611224/36d64a6b42a23851baf90aa432ccdbac?v=1" class="img-circle")
             strong= email
