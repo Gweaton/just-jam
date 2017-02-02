@@ -7,6 +7,17 @@ var config = require('./config');
 var app = express();
 var path = require('path')
 
+var logger = require('morgan');
+
+// added
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
+var session = require('express-session');
+
+// var configDB = require('./config/database.js');
+// mongoose.connect(configDB.url);
+
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -15,8 +26,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//added
+app.use(session({ secret: 'shhsecret' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
 app.use('/', index);
 app.use('/users', users);
+
+// require('./config/passport')(passport);
 
 if(process.env.NODE_ENV === "test"){
     db = mongoose.connect(config.test_db);
