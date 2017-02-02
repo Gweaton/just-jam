@@ -8,7 +8,8 @@ var userSchema = new Schema({
   location: String,
   genres: String,
   instruments: String,
-  bio: String
+  bio: String,
+  imagePath: String
 })
 
 var User = mongoose.model('User', userSchema)
