@@ -1,6 +1,5 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -34,8 +33,6 @@ if(process.env.NODE_ENV === "test"){
 app.set('view engine', 'pug');
 
 app.use(logger('dev'))
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 

@@ -1,6 +1,8 @@
 var express = require('express');
 var passport = require('passport');
 var router = express.Router();
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,13 +28,13 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-router.post('/signup', passport.authenticate('local-signup', {
+router.post('/signup', urlencodedParser, passport.authenticate('local-signup', {
   successRedirect: '/profile',
   failureRedirect: '/signup',
   failureFlash: true,
 }));
 
-router.post('/login', passport.authenticate('local-login', {
+router.post('/login', urlencodedParser, passport.authenticate('local-login', {
   successRedirect: '/profile',
   failureRedirect: '/login',
   failureFlash: true,
