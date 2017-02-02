@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.container-fluid {
+  list-style: none;
+}
+
+nav {
+  padding: 10px;
+}

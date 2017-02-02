@@ -3,7 +3,14 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
   body
-    a(href='/users/') View all jammers
-    a(href='/users/new') Make a profile
+    nav(class='navbar navbar-inverse navbar-fixed-top" role="navigation')
+      div(class="container-fluid")
+        div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+          ul(class="nav navbar-nav navbar-left")
+          li
+            a(class='nav-item' href='/users/') View all jammers
+          li
+            a(class='nav-item' href='/users/new') Make a profile
     block content
