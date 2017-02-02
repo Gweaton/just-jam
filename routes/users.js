@@ -60,15 +60,16 @@ router.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile', { user: req.user });
 });
 
-//end user session
+//end user session - change to DELETE?
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
 
-router.post('/signup', urlencodedParser, passport.authenticate('local-signup', {
-  successRedirect: 'profile',
-  failureRedirect: 'signup',
+// create new user
+router.post('/', urlencodedParser, passport.authenticate('local-signup', {
+  successRedirect: 'users/profile',
+  failureRedirect: 'users/signup',
   failureFlash: true,
 }));
 
