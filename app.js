@@ -17,16 +17,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-if(!module.parent) {
-  if(process.env.NODE_ENV === "test"){
-      db = mongoose.connect(config.test_db);
-    	app.listen(config.test_port);
-    	console.log("App listening on port "+config.test_port);
-  } else {
-     	db = mongoose.connect(config.db);
-     	app.listen(config.port);
-     	console.log("App listening on port "+config.port);
-  }
+if(process.env.NODE_ENV === "test"){
+  db = mongoose.connect(config.test_db);
+  app.listen(config.test_port);
+  console.log("App listening on port "+config.test_port);
+} else {
+  db = mongoose.connect(config.db);
+  app.listen(config.port);
+  console.log("App listening on port "+config.port);
 }
+
 
 module.exports = app;

@@ -2,48 +2,44 @@ process.env.NODE_ENV = 'test';
 
 var app = require('../../app');
 var Browser = require('zombie');
-var http = require('http');
 
 var assert = require('assert')
+var expect = require('chai').expect
+
+Browser.localhost('localhost', 3001)
 
 describe('Profile creation page', function() {
+  const browser = new Browser();
 
-  function fillInForm(browser) {
-    browser
-    .fill('name', 'Prince')
-    .fill('username', 'Princy')
-    .fill('email', 'prince.com')
-    .fill('location', 'Somewhere else')
-    .fill('genres', 'Loads')
-    .fill('instruments', 'Loads')
-    .fill('bio', 'he was great')
-    .pressButton("Get Jammin'");
-  }
-
-  before(function() {
-    this.server = http.createServer(app).listen(3000);
-    this.browser = new Browser( {site: 'http://localhost:3000'} )
-  });
-
-  beforeEach(function(done) {
-    this.browser.visit('/users/new', done)
+  before(function(done) {
+    browser.visit('/users/new', done)
+    console.log('browser.location.href')
   });
 
   it('should show a form', function() {
-    assert.ok(this.browser.success);
-    assert.equal(this.browser.text('h1'), "Enter your details to start jammin'");
+    expect(browser).to.have.status(200);
+    assert.equal(browser.text('h1'), "Enter your details to start jammin'");
   });
 
-  it('should allow the form to be filled in', function(done) {
-    var browser = this.browser;
-    browser
-    fillInForm(browser);
-    done();
-    assert.ok(browser.success);
-    assert.equal(this.browser.text('li'), "Prince");
-  });
+  describe('submits form', function() {
+    before(function(done) {
+      browser
+      .fill('name', 'Prince')
+      .fill('username', 'Princy')
+      .fill('email', 'prince@gmail.com')
+      .fill('location', 'Somewhere else')
+      .fill('genres', 'Loads')
+      .fill('instruments', 'Loads')
+      .fill('bio', 'he was great');
+      browser.pressButton("Get Jammin'", done);
+    });
 
-  after(function(done) {
-    this.server.close(done);
+    it('should be successful', function() {
+      browser.assert.success();
+    });
+
+    it('should take you to the index page', function() {
+      browser.assert.text('h1', 'Jammers...')
+    });
   });
 });
