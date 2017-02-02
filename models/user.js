@@ -14,6 +14,8 @@ var userSchema = new Schema({
   genres: String,
   instruments: String,
   bio: String,
+  imagePath: String
+
 })
 
 userSchema.methods.generateHash = function(password) {

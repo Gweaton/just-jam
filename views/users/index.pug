@@ -9,6 +9,7 @@ block content
         li
           ul
             li= user.username
+            img(src= user.imagePath)
             li(class='name')= user.name
             li
               a(href=`/users/${user.username}`) Show
