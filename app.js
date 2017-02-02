@@ -15,7 +15,6 @@ var session = require('express-session');
 
 var app = express();
 
-
 var configDB = require('./config/database.js');
 // mongoose.connect(configDB.url);
 
@@ -29,6 +28,7 @@ if(process.env.NODE_ENV === "test"){
   console.log("App listening on port "+config.port);
 }
 // view engine setup
+
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 

@@ -9,6 +9,6 @@ block content
         li
           ul
             li= user.username
-            li= user.name
+            li(class='name')= user.name
             li
               a(href=`/users/${user.username}`) Show
