@@ -30,7 +30,8 @@ router.get('/', function(req, res, next) {
   let query = User.find({});
   query.exec(function(err, users) {
     if (err) return console.log(err)
-    res.render('users/index', {users: users})
+    var currentUser = req.user
+    res.render('users/index', {users: users, currentUser})
   })
 });
 
@@ -44,14 +45,28 @@ router.post('/', upload.single('image'), function(req, res) {
 });
 
 router.get('/new', function(req, res) {
-  res.render('users/new');
+  var currentUser = req.user
+  res.render('users/new', { user: currentUser });
 });
 
 router.get('/:username', function(req, res) {
   User.findOne({'username': req.params.username}, function(err, user) {
-    res.render('users/show', { user: user });
+    var currentUser = req.user
+    res.render('users/show', { user: user, currentUser });
   });
 });
 
 
 module.exports = router;
+//
+// function currentUser(req, res){
+//   if (req.user){
+//     return true
+//   }
+// }
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+      return next();
+  res.redirect('/');
+}

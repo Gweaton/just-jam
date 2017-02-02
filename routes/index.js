@@ -20,7 +20,8 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile', { user: req.user });
+  // var currentUser = req.user
+  res.render('profile', { currentUser: req.user });
 });
 
 router.get('/logout', function(req, res) {
