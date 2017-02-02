@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  body
+    .col-sm-8.col-sm-offset-2
+      .jumbotron.text-center
+        h1 Express Authentication
+        p.lead A simple authentication app built with express, node & passport.
+        a.btn.btn-default(href='/login')
+          span.fa.fa-sign-in
+          |  Login
+        a.btn.btn-default(href='/signup')
+          span.fa.fa-user
+          |  Signup
