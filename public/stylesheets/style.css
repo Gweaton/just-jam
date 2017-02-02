@@ -7,7 +7,7 @@ a {
   color: #00B7FF;
 }
 
-li {
+.container-fluid {
   list-style: none;
 }
 
