@@ -60,6 +60,11 @@ router.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile', { user: req.user });
 });
 
+//account profile - not RESTFUL??
+router.get('/edit/:id', isLoggedIn, function(req, res) {
+  res.render('edit', { user: req.user });
+});
+
 //end user session - change to DELETE?
 router.get('/logout', function(req, res) {
   req.logout();
@@ -73,24 +78,27 @@ router.post('/', urlencodedParser, passport.authenticate('local-signup', {
   failureFlash: true,
 }));
 
-router.post('/', upload.single('image'), function(req, res) {
-  var newUser = User(req.body)
-  newUser.imagePath = req.file.location
-  newUser.save(function(err) {
-    if (err) throw err;
-    res.redirect('users/');
-  });
+router.post('/:id', upload.single('image'), function(req, res) {
+  console.log(req.body)
+  User.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    function(err, user) {
+      if (err) throw err;
+    })
+  //user.imagePath = req.file.location
+    res.redirect('profile');
 });
 
 router.get('/new', function(req, res) {
   res.render('users/new');
 });
 
-router.get('/:username', function(req, res) {
-  User.findOne({'username': req.params.username}, function(err, user) {
-    res.render('users/show', { user: user });
-  });
-});
+// router.get('/:username', function(req, res) {
+//   User.findOne({'username': req.params.username}, function(err, user) {
+//     res.render('users/show', { user: user });
+//   });
+// });
 
 module.exports = router;
 
