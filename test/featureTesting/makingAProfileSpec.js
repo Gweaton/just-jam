@@ -4,7 +4,6 @@ var app = require('../../app');
 var Browser = require('zombie');
 
 var assert = require('assert')
-var expect = require('chai').expect
 
 Browser.localhost('localhost', 3001)
 
@@ -17,8 +16,8 @@ describe('Profile creation page', function() {
   });
 
   it('should show a form', function() {
-    expect(browser).to.have.status(200);
-    assert.equal(browser.text('h1'), "Enter your details to start jammin'");
+    browser.assert.success();
+    browser.assert.text('h1', "Enter your details to start jammin'");
   });
 
   describe('submits form', function() {
