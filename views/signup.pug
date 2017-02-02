@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  body
+    .col-sm-8.col-sm-offset-2
+      .jumbotron.text-center
+        h1
+          span.fa.fa-sign-in
+          |  Signup
+
+        if message.length
+          .alert.alert-danger #{message}
+
+        form(action='/signup', method='post')
+          .form-group
+            label Email
+            input.form-control(type='text', name='email')
+          .form-group
+            label Password
+            input.form-control(type='password', name='password')
+          div
+            input.form-control(type='submit', value='Submit')
+      hr
+      span.fa.fa-sign-in
+        | Already have an account?
+        a(href='/login')  Login
+      p
+        | Or go
+        a(href='/')  home
+        | .
