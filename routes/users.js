@@ -1,8 +1,12 @@
 require('../env.js')
 
-const express = require('express');
-const router = express.Router();
 const User = require('../models/user')
+
+var express = require('express');
+var passport = require('passport');
+var router = express.Router();
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const aws = require('aws-sdk')
 const multer = require('multer')
@@ -25,7 +29,7 @@ const upload = multer({
   })
 });
 
-/* GET users listing. */
+//get all users
 router.get('/', function(req, res, next) {
   let query = User.find({});
   query.exec(function(err, users) {
@@ -33,6 +37,40 @@ router.get('/', function(req, res, next) {
     res.render('users/index', {users: users})
   })
 });
+
+//new user session
+router.get('/login', function(req, res, next) {
+  res.render('login', { message: req.flash('loginMessage') });
+});
+
+//create user session
+router.post('/login', urlencodedParser, passport.authenticate('local-login', {
+  successRedirect: 'profile',
+  failureRedirect: 'login',
+  failureFlash: true,
+}));
+
+//new user registration
+router.get('/signup', function(req, res) {
+  res.render('signup', { message: req.flash('signupMessage') });
+});
+
+//account profile - not RESTFUL??
+router.get('/profile', isLoggedIn, function(req, res) {
+  res.render('profile', { user: req.user });
+});
+
+//end user session
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+router.post('/signup', urlencodedParser, passport.authenticate('local-signup', {
+  successRedirect: 'profile',
+  failureRedirect: 'signup',
+  failureFlash: true,
+}));
 
 router.post('/', upload.single('image'), function(req, res) {
   var newUser = User(req.body)
@@ -53,5 +91,10 @@ router.get('/:username', function(req, res) {
   });
 });
 
-
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+      return next();
+  res.redirect('/');
+}
