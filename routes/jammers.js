@@ -1,13 +1,9 @@
-require('../env.js')
-
 const User = require('../models/user')
 const Jammer = require('../models/jammer')
 
 var express = require('express');
 var passport = require('passport');
 var router = express.Router();
-// var bodyParser = require('body-parser')
-// var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const aws = require('aws-sdk')
 const multer = require('multer')
