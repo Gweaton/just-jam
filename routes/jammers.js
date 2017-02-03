@@ -6,8 +6,8 @@ const Jammer = require('../models/jammer')
 var express = require('express');
 var passport = require('passport');
 var router = express.Router();
-var bodyParser = require('body-parser')
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+// var bodyParser = require('body-parser')
+// var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const aws = require('aws-sdk')
 const multer = require('multer')
@@ -31,7 +31,31 @@ const upload = multer({
 });
 
 router.get('/new', function(req, res) {
-  res.render('jammers/new');
+  res.render('jammers/new', {user: req.user});
+});
+
+router.post('/', upload.single('image'), function(req, res) {
+  var newJammer = Jammer(req.body)
+  if (req.file) { newJammer.imagePath = req.file.location}
+  newJammer.addedBy = req.user._id
+  newJammer.save(function(err) {
+    if (err) throw err;
+    res.redirect(`jammers/${newJammer._id}`);
+  });
+});
+
+router.get('/', function(req, res, next) {
+  let query = Jammer.find({});
+  query.exec(function(err, jammers) {
+    if (err) return console.log(err)
+    res.render('jammers/index', {jammers: jammers})
+  })
+});
+
+router.get('/:id', function(req, res) {
+  Jammer.findOne({'_id': req.params.id}, function(err, jammer) {
+    res.render('jammers/show', { jammer: jammer });
+  });
 });
 
 module.exports = router;

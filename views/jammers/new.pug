@@ -4,13 +4,10 @@ block content
 
   h1 Enter your details to start jammin
 
-  form(action='/users', method='post', enctype='multipart/form-data')
+  form(action='/jammers', method='post', enctype='multipart/form-data')
 
     label#name(for='name') Name:
     input(type='text', name='name')
-
-    label#username(for='username') Username:
-    input(type='text', name='username')
 
     label#location(for='location') Location:
     input(type='text', name='location')
