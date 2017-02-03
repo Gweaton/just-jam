@@ -1,5 +1,3 @@
-// require('../env.js')
-
 const User = require('../models/user')
 const Jammer = require('../models/jammer')
 
