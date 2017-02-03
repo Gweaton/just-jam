@@ -52,3 +52,8 @@ h1 {
   background-color: #eee;
   padding: 100px;
 }
+
+.nav-logo {
+  padding-top: 5px;
+  max-height: 40px;
+}
