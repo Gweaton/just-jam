@@ -3,6 +3,7 @@ var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var jammers = require('./routes/jammers');
 var config = require('./config');
 var path = require('path')
 var logger = require('morgan');
@@ -46,6 +47,7 @@ app.use(flash());
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/jammers', jammers);
 
 require('./config/passport')(passport);
 

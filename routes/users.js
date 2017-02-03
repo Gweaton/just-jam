@@ -79,7 +79,6 @@ router.post('/', urlencodedParser, passport.authenticate('local-signup', {
 }));
 
 router.post('/:id', upload.single('image'), function(req, res) {
-  console.log(req.body)
   User.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -90,15 +89,15 @@ router.post('/:id', upload.single('image'), function(req, res) {
     res.redirect('profile');
 });
 
-router.get('/new', function(req, res) {
-  res.render('users/new');
-});
-
-// router.get('/:username', function(req, res) {
-//   User.findOne({'username': req.params.username}, function(err, user) {
-//     res.render('users/show', { user: user });
-//   });
+// router.get('/new', function(req, res) {
+//   res.render('users/new');
 // });
+
+router.get('/:username', function(req, res) {
+  User.findOne({'username': req.params.username}, function(err, user) {
+    res.render('users/show', { user: user });
+  });
+});
 
 module.exports = router;
 
