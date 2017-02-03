@@ -29,18 +29,13 @@ const upload = multer({
   })
 });
 
-//get all users
-router.get('/', function(req, res, next) {
-  let query = User.find({});
-  query.exec(function(err, users) {
-    if (err) return console.log(err)
-    res.render('users/index', {users: users})
-  })
+router.get(`/`, function(req, res, next) {
+  res.redirect('/jammers');
 });
 
 //new user session
 router.get('/login', function(req, res, next) {
-  res.render('login', { message: req.flash('loginMessage') });
+  res.render('users/login', { message: req.flash('loginMessage') });
 });
 
 //create user session
@@ -52,17 +47,11 @@ router.post('/login', urlencodedParser, passport.authenticate('local-login', {
 
 //new user registration
 router.get('/signup', function(req, res) {
-  res.render('signup', { message: req.flash('signupMessage') });
+  res.render('users/signup', { message: req.flash('signupMessage') });
 });
 
-//account profile - not RESTFUL??
 router.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile', { user: req.user });
-});
-
-//account profile - not RESTFUL??
-router.get('/edit/:id', isLoggedIn, function(req, res) {
-  res.render('edit', { user: req.user });
+  res.render('users/profile', { user: req.user });
 });
 
 //end user session - change to DELETE?
@@ -77,27 +66,6 @@ router.post('/', urlencodedParser, passport.authenticate('local-signup', {
   failureRedirect: 'users/signup',
   failureFlash: true,
 }));
-
-router.post('/:id', upload.single('image'), function(req, res) {
-  User.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    function(err, user) {
-      if (err) throw err;
-    })
-  //user.imagePath = req.file.location
-    res.redirect('profile');
-});
-
-// router.get('/new', function(req, res) {
-//   res.render('users/new');
-// });
-
-router.get('/:username', function(req, res) {
-  User.findOne({'username': req.params.username}, function(err, user) {
-    res.render('users/show', { user: user });
-  });
-});
 
 module.exports = router;
 
