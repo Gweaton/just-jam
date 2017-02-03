@@ -2,13 +2,13 @@ extends layout
 
 block content
   body
-    .col-sm-8.col-sm-offset-2
-      .jumbotron.text-center
-        h1 Express Authentication
-        p.lead A simple authentication app built with express, node & passport.
-        a.btn.btn-default(href='/login')
-          span.fa.fa-sign-in
+    div(class="banner-custom")
+      div(class="text-center")
+        h1 Just-Jam
+        p.lead Find your musical soulmate.
+        a(href='/login', class="btn btn-default")
+          span
           |  Login
-        a.btn.btn-default(href='/signup')
-          span.fa.fa-user
+        a(href='/signup', class="btn btn-default")
+          span
           |  Signup

@@ -6,25 +6,41 @@ block content
 
   form(action='/users', method='post', enctype='multipart/form-data')
 
-    label#name(for='name') Name:
-    input(type='text', name='name')
+    div(class='new-form')
 
-    label#username(for='username') Username:
-    input(type='text', name='username')
+      div(class='form-group')
 
-    label#location(for='location') Location:
-    input(type='text', name='location')
+        label#name(for='name') Name:
+        input(type='text', name='name', class="form-control")
 
-    label#genres(for='genres') Genres:
-    input(type='text', name='genres')
+      div(class='form-group')
 
-    label#instruments(for='instruments') Instruments:
-    input(type='text', name='instruments')
+        label#username(for='username') Username:
+        input(type='text', name='username', class="form-control")
 
-    label#bio(for='bio') Bio:
-    input(type='text', name='bio')
+      div(class='form-group')
 
-    label#image(for='image') Image:
-    input(type='file', name='image')
+        label#location(for='location') Location:
+        input(type='text', name='location', class="form-control")
 
-    input(type='submit', value="Get Jammin'")
+      div(class='form-group')
+
+        label#genres(for='genres') Genres:
+        input(type='text', name='genres', class="form-control")
+
+      div(class='form-group')
+
+        label#instruments(for='instruments') Instruments:
+        input(type='text', name='instruments', class="form-control")
+
+      div(class='form-group')
+
+        label#bio(for='bio') Bio:
+        textarea(type='text', name='bio', class="form-control", rows="6")
+
+      div(class='form-group')
+
+        label#image(for='image') Image:
+        input(type='file', name='image')
+
+      input(type='submit', value="Get Jammin'", class="btn btn-default")

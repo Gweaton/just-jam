@@ -4,14 +4,14 @@ block content
   body
     .col-sm-8.col-sm-offset-2
       .text-center
-        h1.fa.fa-user  Profile
+        h1  Profile
         br
         span
-          strong user id
+          strong User:
           strong= user.local.email
         br
-        span.fa.fa-sign-out
-          a(href='/')  Sign out
+        span
+          a(href='/')  Sign Out
         hr
         .jumbotron
           if user.local.email != null
