@@ -8,7 +8,7 @@ var jammerSchema = new Schema({
   genres: String,
   instruments: String,
   bio: String,
-  imagePath: String,
+  imagePath: { type: String, default: "/images/default-image.jpg" },
   addedBy: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
