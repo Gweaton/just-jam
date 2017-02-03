@@ -10,7 +10,7 @@ block content
       if message.length
         .alert.alert-danger #{message}
 
-      form(action='/login', method='post')
+      form(action='/users/login', method='post')
         .form-group
           label Email
           input.form-control(type='text', name='email')
@@ -22,7 +22,7 @@ block content
       hr
       span.fa.fa-sign-in
         |  Don't have an account?
-        a(href='/signup')  Signup
+        a(href='/users/signup')  Signup
       p
         | Or go
         a(href='/')  home

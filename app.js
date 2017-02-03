@@ -3,6 +3,7 @@ var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var jammers = require('./routes/jammers');
 var config = require('./config');
 var path = require('path')
 var logger = require('morgan');
@@ -34,7 +35,7 @@ app.set('view engine', 'pug');
 
 
 
-app.use(logger('dev'))
+// app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
@@ -46,6 +47,7 @@ app.use(flash());
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/jammers', jammers);
 
 require('./config/passport')(passport);
 

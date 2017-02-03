@@ -1,4 +1,4 @@
-extends layout
+extends ../views/layout
 
 block content
   body
@@ -6,9 +6,13 @@ block content
       .text-center
         h1.fa.fa-user  Profile
         br
+        a(href=`/jammers/new`)  Create profile
+        br
         span
           strong user id
           strong= user.local.email
+        br
+        strong= user.name
         br
         span.fa.fa-sign-out
           a(href='/')  Sign out

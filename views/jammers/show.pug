@@ -1,0 +1,12 @@
+extends ../../views/layout
+
+block content
+
+  h1= jammer.name
+
+  ul
+    img(src= jammer.imagePath)
+    li= jammer.location
+    li= jammer.genres
+    li= jammer.instruments
+    li= jammer.bio

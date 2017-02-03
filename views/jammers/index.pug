@@ -1,0 +1,15 @@
+extends ../../views/layout
+
+block content
+
+  h1 Jammers...
+
+  ul
+    each jammer, i in jammers
+        li
+          ul
+            li= jammer.name
+            img(src= jammer.imagePath)
+            li(class='name')= jammer.name
+            li
+              a(href=`/jammers/${jammer._id}`) Show
