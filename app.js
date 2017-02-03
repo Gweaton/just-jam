@@ -16,8 +16,6 @@ var session = require('express-session');
 
 var app = express();
 
-var configDB = require('./config/database.js');
-// mongoose.connect(configDB.url);
 
 if(process.env.NODE_ENV === "test"){
   db = mongoose.connect(config.test_db);
