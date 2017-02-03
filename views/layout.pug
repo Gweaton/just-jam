@@ -11,10 +11,14 @@ html
           div(class="navbar-header")
           div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
             div(class="nav navbar-nav navbar-left")
-              img(src="/images/logo.png" class="nav-logo")
+              a(href="/jammers")
+                img(src="/images/logo.png" class="nav-logo")
             ul(class="nav navbar-nav navbar-right")
               li(class="nav-custom")
                 a(href='/jammers/') View all jammers
               li(class="nav-custom")
                 a(href='/users/profile') My profile
+              if (user)
+                li(class='nav-custom')
+                  a(href='/users/logout') Log Out
     block content

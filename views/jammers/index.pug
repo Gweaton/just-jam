@@ -8,8 +8,9 @@ block content
     div(class="row user-list")
       each jammer, i in jammers
           div(class="col-md-4")
-            img(src= jammer.imagePath, class="img-custom img-responsive")
-            h2=jammer.name
-            p= jammer.instruments
-            p
-              a(href=`/jammers/${jammer._id}`) Show
+            div(class="user-list")
+              img(src= jammer.imagePath, class="img-custom img-responsive")
+              h2=jammer.name
+              p= jammer.instruments
+              p
+                a(href=`/jammers/${jammer._id}`) Show
