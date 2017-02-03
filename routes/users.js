@@ -45,7 +45,7 @@ router.get('/login', function(req, res, next) {
 
 //create user session
 router.post('/login', urlencodedParser, passport.authenticate('local-login', {
-  successRedirect: 'profile',
+  successRedirect: '/jammers',
   failureRedirect: 'login',
   failureFlash: true,
 }));
@@ -73,7 +73,7 @@ router.get('/logout', function(req, res) {
 
 // create new user
 router.post('/', urlencodedParser, passport.authenticate('local-signup', {
-  successRedirect: 'users/profile',
+  successRedirect: 'jammers/new',
   failureRedirect: 'users/signup',
   failureFlash: true,
 }));
