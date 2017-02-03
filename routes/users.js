@@ -1,8 +1,12 @@
 require('../env.js')
 
-const express = require('express');
-const router = express.Router();
 const User = require('../models/user')
+
+var express = require('express');
+var passport = require('passport');
+var router = express.Router();
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const aws = require('aws-sdk')
 const multer = require('multer')
@@ -25,7 +29,7 @@ const upload = multer({
   })
 });
 
-/* GET users listing. */
+//get all users
 router.get('/', function(req, res, next) {
   let query = User.find({});
   query.exec(function(err, users) {
@@ -34,18 +38,60 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post('/', upload.single('image'), function(req, res) {
-  var newUser = User(req.body)
-  newUser.imagePath = req.file.location
-  newUser.save(function(err) {
-    if (err) throw err;
-    res.redirect('users/');
-  });
+//new user session
+router.get('/login', function(req, res, next) {
+  res.render('login', { message: req.flash('loginMessage') });
 });
 
-router.get('/new', function(req, res) {
-  res.render('users/new');
+//create user session
+router.post('/login', urlencodedParser, passport.authenticate('local-login', {
+  successRedirect: '/jammers',
+  failureRedirect: 'login',
+  failureFlash: true,
+}));
+
+//new user registration
+router.get('/signup', function(req, res) {
+  res.render('signup', { message: req.flash('signupMessage') });
 });
+
+//account profile - not RESTFUL??
+router.get('/profile', isLoggedIn, function(req, res) {
+  res.render('profile', { user: req.user });
+});
+
+//account profile - not RESTFUL??
+router.get('/edit/:id', isLoggedIn, function(req, res) {
+  res.render('edit', { user: req.user });
+});
+
+//end user session - change to DELETE?
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+// create new user
+router.post('/', urlencodedParser, passport.authenticate('local-signup', {
+  successRedirect: 'jammers/new',
+  failureRedirect: 'users/signup',
+  failureFlash: true,
+}));
+
+router.post('/:id', upload.single('image'), function(req, res) {
+  User.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    function(err, user) {
+      if (err) throw err;
+    })
+  //user.imagePath = req.file.location
+    res.redirect('profile');
+});
+
+// router.get('/new', function(req, res) {
+//   res.render('users/new');
+// });
 
 router.get('/:username', function(req, res) {
   User.findOne({'username': req.params.username}, function(err, user) {
@@ -53,5 +99,10 @@ router.get('/:username', function(req, res) {
   });
 });
 
-
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+      return next();
+  res.redirect('/');
+}

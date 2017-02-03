@@ -1,4 +1,4 @@
-extends layout
+extends ../views/layout
 
 block content
   body
@@ -6,12 +6,15 @@ block content
       .text-center
         h1  Profile
         br
+        a(href=`/jammers/new`)  Create profile
+        br
         span
           strong User:
           strong= user.local.email
         br
         span
-          a(href='/')  Sign Out
+          a(href='/users/logout')  Sign Out
+
         hr
         .jumbotron
           if user.local.email != null

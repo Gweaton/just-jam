@@ -10,7 +10,7 @@ block content
       if message.length
         .alert.alert-danger #{message}
 
-      form(action='/login', method='post')
+      form(action='/users/login', method='post')
         div(class="new-form")
           .form-group
             label Email
@@ -24,8 +24,9 @@ block content
         hr
         span
           |  Don't have an account?
-          a(href='/signup')  Signup
+          a(href='users/signup')  Signup
         p
           | Or go
           a(href='/')  home
           | .
+
