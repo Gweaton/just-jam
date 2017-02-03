@@ -4,18 +4,17 @@ block content
   body
     .col-sm-8.col-sm-offset-2
       .text-center
-        h1.fa.fa-user  Profile
+        h1  Profile
         br
         a(href=`/jammers/new`)  Create profile
         br
         span
-          strong user id
+          strong User:
           strong= user.local.email
         br
-        strong= user.name
-        br
-        span.fa.fa-sign-out
-          a(href='/')  Sign out
+        span
+          a(href='/users/logout')  Sign Out
+
         hr
         .jumbotron
           if user.local.email != null

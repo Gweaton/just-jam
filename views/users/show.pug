@@ -1,14 +1,13 @@
 extends ../../views/layout
 
 block content
-
-  h1= user.name
-
-  ul
-    li= user.username
-    img(src= user.imagePath)
-    li= user.email
-    li= user.location
-    li= user.genres
-    li= user.instruments
-    li= user.bio
+  div(class="container")
+    div(class="col-md-8 jumbotron")
+      h1= user.name
+      h3= user.username
+      img(src= user.imagePath)
+      h3= user.email
+      h3= user.location
+      h3= user.genres
+      h3= user.instruments
+      h3= user.bio
