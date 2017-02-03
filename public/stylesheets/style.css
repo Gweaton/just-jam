@@ -26,14 +26,14 @@ h1 {
 
 .user-list {
   text-align: center;
-  padding: 50px;
   border-bottom: solid 2px #eee;
+  height: 330px;
 }
 
-.img-custom {
+.user-list > .img-custom {
   display: block;
   margin: 0 auto;
-  padding: 5px;
+  padding-top: 12px;
   width: 200px;
   height: 200px;
   border-radius: 10%;
