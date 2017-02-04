@@ -1,0 +1,42 @@
+extends ../../views/layout
+
+block content
+
+  h1 YO
+
+  div(id="chat")
+
+    form(id="join-group" action="")
+      input(type="submit", value="Join")
+
+    form(id="send-message" action="")
+      input(id="message" autocomplete="off")
+      input(type="submit", value="Send")
+
+  script(src="/socket.io/socket.io.js")
+  script(src="http://code.jquery.com/jquery-latest.min.js")
+  script.
+    $(document).ready(function(){
+      console.log("JQUIZZLE")
+      var socket = io.connect();
+
+      $('#join-group').submit(function(e){
+        e.preventDefault();
+        socket.emit('request_join', { id: `${chat._id}` })
+      })
+
+      $('#send-message').submit(function(e){
+        e.preventDefault();
+        socket.emit('send message', {
+          message: $('#message').val(),
+          room: `${chat._id}`
+        })
+
+        $('#message').val('');
+      })
+
+      socket.on('new message', function(data){
+        $('#chat').append(data + "<br/>")
+      })
+
+    })
