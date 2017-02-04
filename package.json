@@ -27,7 +27,8 @@
     "pug": "^2.0.0-beta10",
     "serve-favicon": "~2.3.0",
     "session": "^0.1.0",
-    "socket.io": "^1.7.2"
+    "socket.io": "^1.7.2",
+    "socketio-auth": "^0.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
