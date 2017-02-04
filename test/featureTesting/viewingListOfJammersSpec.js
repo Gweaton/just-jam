@@ -5,6 +5,8 @@ var Browser = require('zombie');
 
 var assert = require('assert');
 var User = require('../../models/user');
+var helper = require('./testHelper');
+
 
 Browser.localhost('localhost', 3001);
 
