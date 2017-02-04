@@ -34,13 +34,30 @@ describe('Visiting the website', function() {
 
     before(function(done) {
       browser
-        .fill('email', 'prince@prince.com')
-        .fill('password', 'password');
-        browser.pressButton('Submit', done)
+      .fill('email', 'prince@prince.com')
+      .fill('password', 'password');
+      browser.pressButton('Submit', done)
     });
 
-    it('should take you to the profile page', function() {
+    it('should take you to the make a profile page', function() {
       browser.assert.text('h1', "Enter your details to start jammin'!")
+    });
+
+    describe('Making a profile', function() {
+      before(function(done) {
+        browser
+        .fill('name', 'Prince')
+        .fill('location', 'Somewhere else')
+        .fill('genres', 'Loads')
+        .select('select', 'Guitarist')
+        .fill('bio', 'he was great');
+        browser.pressButton("Get Jammin'", done);
+      });
+
+      it('filling in your details should take you to your profile', function() {
+        browser.assert.text('h1', 'Prince')
+        browser.assert.attribute('img', 'img-custom img-responsive')
+      });
     });
   });
 });
