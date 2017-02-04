@@ -18,8 +18,7 @@ var session = require('express-session');
 var app = express();
 
 var server = require('http').Server(app)
-var io = require('socket.io')(server)
-
+var io = require('socket.io').listen(server)
 
 if(process.env.NODE_ENV === "test"){
   db = mongoose.connect(config.test_db);
@@ -54,8 +53,8 @@ app.use(function(req, res, next){
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/jammers', jammers);
 app.use('/chats', chats);
+app.use('/jammers', jammers);
 
 require('./config/passport')(passport);
 
@@ -77,5 +76,24 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+io.sockets.on('connection', function(socket){
+  socket.on('request_join', function(data){
+    console.log("requesting join")
+    //if (socket.user)
+    //TODO: authentication check!
+    socket.join(data.id)
+  })
+  //sending a new message to a room
+  socket.on('send message', function(data){
+    io.sockets.in(data.room).emit('new message', data.message);
+    //save message to conversation(data.room)
+  })
+
+  socket.on('disconnect', function(data){
+    socket.leave(data)
+  })
+})
 
 module.exports = app;
