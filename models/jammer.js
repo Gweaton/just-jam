@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var jammerSchema = new Schema({
-  name: String,
+  name: { type: String, required: true },
   location: String,
   genres: String,
   instruments: String,
