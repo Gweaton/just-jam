@@ -33,7 +33,7 @@ router.get('/new', function(req, res) {
 router.post('/', upload.single('image'), function(req, res) {
   var newJammer = Jammer(req.body)
   if (req.file) { newJammer.imagePath = req.file.location}
-  newJammer.addedBy = req.user._id
+  newJammer.addedBy = req.user
   newJammer.save(function(err) {
     if (err) throw err;
     res.redirect(`jammers/${newJammer._id}`);
