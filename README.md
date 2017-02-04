@@ -10,7 +10,7 @@ Users sign up and create their own profile, specifying what instrument they play
 
 Future features include:
  - Uploading audio & video clips to your profile, so prospective bandmates can hear (or see) you play.
- - An integrated messaging service built in to the app so all communication can be done in the same place.
+ - An integrated messaging service built so all communication can be done within the app.
  - Search filters for musicians who play more than one instrument.
  - A location-based filter.
 
@@ -19,7 +19,7 @@ Future features include:
  - Node.js
  - MongoDB
  - JavaScript
- - Pug, SCSS & Bootstrap
+ - Pug, CSS & Bootstrap
 
 ### Testing
 
