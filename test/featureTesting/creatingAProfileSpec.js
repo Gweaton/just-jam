@@ -3,10 +3,10 @@ process.env.NODE_ENV = 'test';
 var app = require('../../app');
 var Browser = require('zombie');
 
-var assert = require('assert')
-var User = require('../../models/user')
+var assert = require('assert');
+var User = require('../../models/user');
 
-Browser.localhost('localhost', 3001)
+Browser.localhost('localhost', 3001);
 
 describe('Visiting the website', function() {
 
