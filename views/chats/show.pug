@@ -29,14 +29,22 @@ block content
         e.preventDefault();
         socket.emit('send message', {
           message: $('#message').val(),
-          room: `${chat._id}`
+          room: `${chat._id}`,
+          author: "Test"
         })
 
         $('#message').val('');
       })
 
+      /*socket.on('connect', function(){
+        socket.emit('authentication', {username: "John", password: "secret"});
+        socket.on('unauthorized', function(err) {
+          console.log("There was a problem with authentication:" + err.message)
+        });
+      });*/
+
       socket.on('new message', function(data){
-        $('#chat').append(data + "<br/>")
+        $('#chat').append("<div class='msg'>" + data.author + ": " + data.message + "</div>")
       })
 
     })
