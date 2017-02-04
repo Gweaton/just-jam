@@ -3,10 +3,11 @@ process.env.NODE_ENV = 'test';
 var app = require('../../app');
 var Browser = require('zombie');
 
-var assert = require('assert')
-var User = require('../../models/user')
+var assert = require('assert');
+var User = require('../../models/user');
+var helper = require('./testHelper');
 
-Browser.localhost('localhost', 3001)
+Browser.localhost('localhost', 3001);
 
 describe('Visiting the website', function() {
 
@@ -33,9 +34,7 @@ describe('Visiting the website', function() {
     });
 
     before(function(done) {
-      browser
-      .fill('email', 'prince@prince.com')
-      .fill('password', 'password');
+      helper.signUp(browser);
       browser.pressButton('Submit', done)
     });
 
@@ -45,12 +44,7 @@ describe('Visiting the website', function() {
 
     describe('Making a profile', function() {
       before(function(done) {
-        browser
-        .fill('name', 'Prince')
-        .fill('location', 'Somewhere else')
-        .fill('genres', 'Loads')
-        .select('select', 'Guitarist')
-        .fill('bio', 'he was great');
+        helper.createProfile(browser);
         browser.pressButton("Get Jammin'", done);
       });
 
