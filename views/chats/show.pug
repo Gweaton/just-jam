@@ -4,10 +4,10 @@ block content
 
   h1 YO
 
-  div(id="chat")
-
-    form(id="join-group" action="")
-      input(type="submit", value="Join")
+  div(id="chat-messages")
+    //-
+    //- form(id="join-group" action="")
+    //-   input(type="submit", value="Join")
 
     form(id="send-message" action="")
       input(id="message" autocomplete="off")
@@ -19,32 +19,21 @@ block content
     $(document).ready(function(){
       console.log("JQUIZZLE")
       var socket = io.connect();
-
-      $('#join-group').submit(function(e){
-        e.preventDefault();
-        socket.emit('request_join', { id: `${chat._id}` })
-      })
+      socket.emit('request_join', { id: "#{chat._id}" })
 
       $('#send-message').submit(function(e){
         e.preventDefault();
         socket.emit('send message', {
           message: $('#message').val(),
-          room: `${chat._id}`,
+          room: "#{chat._id}",
           author: "Test"
         })
 
         $('#message').val('');
       })
 
-      /*socket.on('connect', function(){
-        socket.emit('authentication', {username: "John", password: "secret"});
-        socket.on('unauthorized', function(err) {
-          console.log("There was a problem with authentication:" + err.message)
-        });
-      });*/
-
       socket.on('new message', function(data){
-        $('#chat').append("<div class='msg'>" + data.author + ": " + data.message + "</div>")
+        $('#chat-messages').append("<div class='msg'>" + data.author + ": " + data.message + "</div>")
       })
 
     })
