@@ -23,10 +23,10 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.post('/new', urlencodedParser, function(req, res){
   //check if chat already exists else create a new chat
-  var chat = Chat.findOne({'participants': [req.body.id, req.user]}, function(err, chat){
+  var chat = Chat.findOne({ $and:[ {participants:req.body.id}, {participants:req.user} ]}, function(err, chat){
     if (chat){
       console.log("Retrieving chat")
-      res.redirect(`${chat._id}`)
+      res.redirect(`/chats/${chat._id}`)
     } else {
     console.log("Making new chat")
     var newChat = Chat()
@@ -42,6 +42,7 @@ router.post('/new', urlencodedParser, function(req, res){
 
 router.get('/:id', function(req, res){
   Chat.findOne({'_id': req.params.id}, function(err, chat){
+    if (err) throw err;
     res.render('chats/show', { chat: chat })
   })
 })
