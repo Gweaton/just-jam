@@ -4,10 +4,12 @@ block content
 
   h1 YO
 
+  div(id="all-messages")
+
+    each message, i in messages
+      p= message.body
+
   div(id="chat-messages")
-    //-
-    //- form(id="join-group" action="")
-    //-   input(type="submit", value="Join")
 
     form(id="send-message" action="")
       input(id="message" autocomplete="off")
@@ -17,7 +19,6 @@ block content
   script(src="http://code.jquery.com/jquery-latest.min.js")
   script.
     $(document).ready(function(){
-      console.log("JQUIZZLE")
       var socket = io.connect();
       socket.emit('request_join', { id: "#{chat._id}" })
 
@@ -26,14 +27,13 @@ block content
         socket.emit('send message', {
           message: $('#message').val(),
           room: "#{chat._id}",
-          author: "Test"
+          /*author: "#{user.name}"*/
         })
-
-        $('#message').val('');
+        $('#message').val('')
       })
 
       socket.on('new message', function(data){
-        $('#chat-messages').append("<div class='msg'>" + data.author + ": " + data.message + "</div>")
+        $('#all-messages').append("<div class='msg'>" + data.message + "</div>")
       })
 
     })
