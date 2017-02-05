@@ -3,11 +3,13 @@ extends ../../views/layout
 block content
 
     div(id="chat-list")
-      h1 chat.particpants
+      each chat, i in chats
 
-      form(id="join-group" action=`/jammers/${chat._id}`)
-        input(id="group" autocomplete="off")
-          button Join
+        h1= chat
+
+        form(id="join-group" action=`/jammers/${chat._id}`)
+          input(id="group" autocomplete="off")
+            button Join
 
     script(src="/socket.io/socket.io.js")
     script(src="http://code.jquery.com/jquery-1.11.1.js")
