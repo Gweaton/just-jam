@@ -41,7 +41,7 @@ router.post('/', upload.single('image'), function(req, res) {
 });
 
 router.get('/', function(req, res, next) {
-  let query = Jammer.findOne({instrument: req.query.instrument});
+  let query = Jammer.find(req.query);
   query.exec(function(err, jammers) {
     if (err) return console.log(err)
     res.render('jammers/index', {jammers: jammers})
