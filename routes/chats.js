@@ -12,14 +12,14 @@ const io = require('socket.io')(server)
 
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
-//
-// router.get('/', function (req, res) {
-//   //page to show all chats for that user
-//   // Chat.find({ participants: req.user._id }, function(err, chats){
-//   //   if (err) return console.log(err)
-//   //   res.render('/chats/index', { chats: chats });
-//   })
-// });
+
+router.get('/', function(req, res){
+  Chat.find({participants: req.user}, function(err, chats){
+    if (err) throw err;
+    res.render('/chats/index', { chats: chats })
+  })
+
+})
 
 router.post('/new', urlencodedParser, function(req, res){
   //check if chat already exists else create a new chat
@@ -41,9 +41,13 @@ router.post('/new', urlencodedParser, function(req, res){
 })
 
 router.get('/:id', function(req, res){
+  //find specific chat
   Chat.findOne({'_id': req.params.id}, function(err, chat){
     if (err) throw err;
-    res.render('chats/show', { chat: chat })
+    var messages = Message.find({ chatId: chat._id }, function(err, messages){
+      res.render('chats/show', { chat: chat, messages: messages })
+    })
+    //not sure how to pass through user to the view to populate author
   })
 })
 
