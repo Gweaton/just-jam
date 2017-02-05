@@ -111,9 +111,17 @@ io.sockets.on('connection', function(socket){
   socket.on('send message', function(data){
     io.sockets.in(data.room).emit('new message', { author: data.author, message: data.message });
     //save message to conversation(data.room)
-    var newMessage = Message({ chatId: data.room, body: data.message})
-    newMessage.save(function(err){
+    var chat = Chat.findOne({'_id': data.room}, function(err, chat){
       if (err) throw err;
+      //eventually need to pass user to message model
+      var message = Message({ chatId: data.room, body: data.message})
+      message.save(function(err){
+        if (err) throw err
+        chat.messages.push(message)
+        chat.save(function(err){
+          if (err) throw err
+        })
+      })
     })
   })
 
