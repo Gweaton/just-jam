@@ -1,6 +1,8 @@
 var express = require('express');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
+var MongoStore = require('connect-mongo')(session);
 var index = require('./routes/index');
 var users = require('./routes/users');
 var jammers = require('./routes/jammers');
@@ -9,20 +11,21 @@ var config = require('./config');
 var path = require('path')
 var logger = require('morgan');
 
-const Message = require('./models/message')
-const User = require('./models/user')
-const Chat = require('./models/chat')
+var Message = require('./models/message')
+var User = require('./models/user')
+var Chat = require('./models/chat')
 
 // added
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-var session = require('express-session');
 
 var app = express();
 
 var server = require('http').Server(app)
 var io = require('socket.io').listen(server)
+var passportSocketIo = require('passport.socketio')
+var sessionStore = new MongoStore({mongooseConnection: mongoose.connection})
 
 if(process.env.NODE_ENV === "test"){
   db = mongoose.connect(config.test_db);
@@ -45,7 +48,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 //added
-app.use(session({ secret: 'shhsecret' }));
+app.use(session({
+  secret: 'shhsecret',
+  store: sessionStore
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -81,19 +87,31 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//socket authentication
+io.use(passportSocketIo.authorize({
+  cookieParser: cookieParser,
+  secret: 'shhsecret',
+  store: sessionStore,
+  success: onAuthorizeSuccess,
+  fail: onAuthorizeFail
+}))
+
 //socket handling
 io.sockets.on('connection', function(socket){
   socket.on('request_join', function(data){
     console.log("requesting join")
-    //if this user is a user in the chat
-      socket.join(data.id)
-      // postAuthenticate(socket, data)
+    //if the user is authorized
+    if(socket.request.user.logged_in){
+      // if(data.id.participants.includes(socket.request.user)){
+        socket.join(data.id)
+      }
+    // }
   })
   //sending a new message to a room
   socket.on('send message', function(data){
     io.sockets.in(data.room).emit('new message', { author: data.author, message: data.message });
     //save message to conversation(data.room)
-    var newMessage = Message({ chatId: data.room, body: data.message, author: data.author})
+    var newMessage = Message({ chatId: data.room, body: data.message})
     newMessage.save(function(err){
       if (err) throw err;
     })
@@ -104,34 +122,18 @@ io.sockets.on('connection', function(socket){
   })
 })
 
-//authenticating user when trying to connect to socket
-// require('socketio-auth')(io, {
-//   authenticate: function(socket, data, callback) {
-//     //get credentials sent by the client
-//     var username = data.username;
-//     var password = data.password;
-//
-//     User.findOne({username:username}, function(err, user) {
-//
-//       //inform the callback of auth success/failure
-//       if (err || !user) return callback(new Error("User not found"));
-//       return callback(null, user.password == password);
-//     });
-//   }
-// })
 
-//
-// function postAuthenticate(socket, data){
-//   var username = data.username;
-//
-//   User.findOne({username:username}, function(err, user) {
-//     socket.client.user = user;
-//   });
-// }
-//
-// function disconnect(socket){
-//   console.log(socket.id + " disconnected")
-// }
+function onAuthorizeSuccess(data, accept){
+  console.log('successful connection to socket.io');
+  accept();
+}
 
+function onAuthorizeFail(data, message, error, accept){
+  if(error)
+    throw new Error(message);
+  console.log('failed connection to socket.io:', message);
+  if(error)
+    accept(new Error(message));
+}
 
 module.exports = app;
