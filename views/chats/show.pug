@@ -33,7 +33,7 @@ block content
       })
 
       socket.on('new message', function(data){
-        $('#all-messages').append("<p>" + data.author + ": " + data.message + "</p>")
+        $('#all-messages').append("<p><b>" + data.author + "</b>: " + data.message + "</p>")
       })
 
     })
