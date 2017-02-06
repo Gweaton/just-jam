@@ -32,11 +32,13 @@ router.get('/new', function(req, res) {
   res.render('jammers/new', {user: req.user});
 });
 
-router.post('/', upload.single('image'), function(req, res) {
+router.post('/', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req, res) {
   var newJammer = Jammer(req.body)
-  if (req.file) { newJammer.imagePath = req.file.location}
+  if (req.files['image']) { newJammer.imagePath = req.files['image'][0]['location']}
+  if (req.files['audio']) { newJammer.audioPath = req.files['audio'][0]['location']}
   newJammer.addedBy = req.user._id
   newJammer.save(function(err) {
+    console.log(newJammer)
     if (err) throw err;
     res.redirect(`jammers/${newJammer._id}`);
   });
