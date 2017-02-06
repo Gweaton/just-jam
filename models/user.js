@@ -8,7 +8,8 @@ var userSchema = new Schema({
     email: String,
     password: String
   },
-  jammer: { type: Schema.Types.ObjectId, ref: 'Jammer' }
+  jammer: { type: Schema.Types.ObjectId, ref: 'Jammer' },
+  name: String
 })
 
 userSchema.methods.generateHash = function(password) {
