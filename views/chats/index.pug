@@ -4,7 +4,8 @@ block content
 
     each chat, i in chats
       div(id="chat-list")
-        h1 #{jammer1.name} & #{jammer2.name}
+        h1= chat.sender
+        h1= chat.recipient
 
         form(action=`/chats/${chat._id}`)
           button Join
