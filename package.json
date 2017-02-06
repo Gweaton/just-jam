@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nf go",
-    "go": "nodemon app.js",
+    "start": "nodemon app.js",
     "test": "NODE_ENV=test mocha --recursive"
   },
   "dependencies": {

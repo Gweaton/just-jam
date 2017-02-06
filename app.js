@@ -1,10 +1,12 @@
+
+
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var jammers = require('./routes/jammers');
-var config = require('./config');
+var config = require('./config/config');
 var path = require('path')
 var logger = require('morgan');
 
