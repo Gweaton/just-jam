@@ -26,9 +26,14 @@ html
             ul(class="nav navbar-nav navbar-right")
               li(class="nav-custom")
                 a(href='/jammers/') View all jammers
-              li(class="nav-custom")
-                a(href='/users/profile') My profile
               if (user)
+                li(class="nav-custom")
+                  a(href='/users/profile') My profile
                 li(class='nav-custom')
                   a(href='/users/logout') Log Out
+              else
+                li(class="nav-custom")
+                  a(href='/users/login') Log in
+                li(class="nav-custom")
+                  a(href='/users/signup') Sign up
     block content
