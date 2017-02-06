@@ -37,10 +37,7 @@ router.post('/', upload.single('image'), function(req, res) {
   newJammer.save(function(err) {
     if (err) throw err;
     req.user.jammer = newJammer
-<<<<<<< HEAD
     req.user.name = req.body.name
-=======
->>>>>>> 4a3ef97f966c3c45f0340eae5aebd46bfafef205
     req.user.save(function(err){
       if (err) throw err;
     })
