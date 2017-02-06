@@ -13,6 +13,16 @@ html
             div(class="nav navbar-nav navbar-left")
               a(href="/jammers")
                 img(src="/images/logo.png" class="nav-logo")
+            form(class="navbar-form navbar-left", action='/jammers', method='get')
+              div(class='form-group')
+                select(name ="instruments" class="form-control")
+                  option(value="" disabled="disabled" selected="selected") I am a looking for a...
+                  option(value="Singer") Singer
+                  option(value="Guitarist") Guitarist
+                  option(value="Bassist") Bassist
+                  option(value="Keyboardist") Keyboardist
+                  option(value="Drummer") Drummer
+                  input(type='submit', value="Search", class="btn btn-default")
             ul(class="nav navbar-nav navbar-right")
               li(class="nav-custom")
                 a(href='/jammers/') View all jammers
