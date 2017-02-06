@@ -15,10 +15,18 @@ var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.get('/', function(req, res){
-  Chat.find({participants: req.user}, function(err, chats){
+  Chat.find({participants: req.user}, function(err, chats) {
     if (err) throw err;
-    res.render('/chats/index', { chats: chats })
+    chats.forEach(function(chat) {
+      //finds us
+      Jammer.findOne({ addedBy: chat.participants[0] }, function(err, jammer1) {
+        console.log(chat.participants)
+        Jammer.findOne({addedBy: chat.participants[1]}, function(err, jammer2) {
+          res.render('chats/index', { chats: chats, jammer1: jammer1, jammer2: jammer2 })
+        });
+    })
   })
+});
 
 })
 
