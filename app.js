@@ -102,19 +102,19 @@ io.sockets.on('connection', function(socket){
     console.log("requesting join")
     //if the user is authorized
     if(socket.request.user.logged_in){
-      // if(data.id.participants.includes(socket.request.user)){
         socket.join(data.id)
       }
     // }
   })
   //sending a new message to a room
   socket.on('send message', function(data){
-    io.sockets.in(data.room).emit('new message', { author: data.author, message: data.message });
+    console.log(data)
+    io.sockets.in(data.room).emit('new message', { author:data.author, message: data.message });
     //save message to conversation(data.room)
     var chat = Chat.findOne({'_id': data.room}, function(err, chat){
       if (err) throw err;
       //eventually need to pass user to message model
-      var message = Message({ chatId: data.room, body: data.message})
+      var message = Message({ chatId: data.room, body: data.message, author: data.author})
       message.save(function(err){
         if (err) throw err
         chat.messages.push(message)

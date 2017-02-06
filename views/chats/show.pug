@@ -7,7 +7,7 @@ block content
   div(id="all-messages")
 
     each message, i in messages
-      p= message.body
+      p= message.author + ": " + message.body
 
   div(id="chat-messages")
 
@@ -27,13 +27,13 @@ block content
         socket.emit('send message', {
           message: $('#message').val(),
           room: "#{chat._id}",
-          /*author: "#{user.name}"*/
+          author: "#{user.local.email}"
         })
         $('#message').val('')
       })
 
       socket.on('new message', function(data){
-        $('#all-messages').append("<div class='msg'>" + data.message + "</div>")
+        $('#all-messages').append("<p>" + data.author + ": " + data.message + "</p>")
       })
 
     })

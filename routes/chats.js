@@ -45,7 +45,7 @@ router.get('/:id', function(req, res){
   Chat.findOne({'_id': req.params.id}, function(err, chat){
     if (err) throw err;
     var messages = Message.find({ chatId: chat._id }, function(err, messages){
-      res.render('chats/show', { chat: chat, messages: messages })
+      res.render('chats/show', { chat: chat, messages: messages, user: req.user })
     })
     //not sure how to pass through user to the view to populate author
   })
