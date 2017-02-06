@@ -27,7 +27,7 @@ block content
         socket.emit('send message', {
           message: $('#message').val(),
           room: "#{chat._id}",
-          author: "#{user.local.email}"
+          author: "#{jammer.name}"
         })
         $('#message').val('')
       })
