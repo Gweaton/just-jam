@@ -1,5 +1,6 @@
 
 const User = require('../models/user')
+const Jammer = require('../models/jammer')
 
 var express = require('express');
 var passport = require('passport');
@@ -29,7 +30,10 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/profile', isLoggedIn, function(req, res) {
-  res.render('users/profile', { user: req.user });
+  Jammer.findOne({'_id': req.user.jammer}, function(err, jammer) {
+    if (err) return res.render('users/profile', { user: req.user})
+    res.render('users/profile', { user: req.user, jammer: jammer})
+  });
 });
 
 //end user session - change to DELETE?

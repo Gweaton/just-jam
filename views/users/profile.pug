@@ -4,19 +4,19 @@ block content
   body
     .col-sm-8.col-sm-offset-2
       .text-center
-        h1  Profile
-        br
-        a(href=`/jammers/new`)  Create profile
-        br
-        span
-          strong User:
-          strong= user.local.email
-        br
-        span
-          a(href='/users/logout')  Sign Out
-
-        hr
-        .jumbotron
-          if user.local.email != null
-            img(src="https://static-s.aa-cdn.net/img/ios/599611224/36d64a6b42a23851baf90aa432ccdbac?v=1" class="img-circle")
-            strong= email
+        if user.jammer == null
+          | You have not created a profile
+          br
+          a(href=`/jammers/new`)  Create profile
+        else
+          div
+            h1= jammer.name
+            img(src= jammer.imagePath)
+            br
+            if (jammer.audioPath)
+              audio(controls)
+                source(src= jammer.audioPath)
+            p= jammer.location
+            p= jammer.genres
+            p= jammer.instrusments
+            p= jammer.bio
