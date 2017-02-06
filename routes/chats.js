@@ -15,32 +15,28 @@ var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.get('/', function(req, res){
-  Chat.find({participants: req.user}, function(err, chats) {
-    if (err) throw err;
-    chats.forEach(function(chat) {
-      //finds us
-      Jammer.findOne({ addedBy: chat.participants[0] }, function(err, jammer1) {
-        console.log(chat.participants)
-        Jammer.findOne({addedBy: chat.participants[1]}, function(err, jammer2) {
-          res.render('chats/index', { chats: chats, jammer1: jammer1, jammer2: jammer2 })
-        });
-    })
+  Chat.find({ participants: req.user }, function(err, chats) {
+    res.render('chats/index', { chats: chats })
   })
 });
 
-})
-
 router.post('/new', urlencodedParser, function(req, res){
   //check if chat already exists else create a new chat
-  var chat = Chat.findOne({ $and:[ {participants:req.body.id}, {participants:req.user} ]}, function(err, chat){
+  var chat = Chat.findOne({ $and:[ {participants: {id: req.body.id, name: req.body.name }}, {participants:req.user} ]}, function(err, chat){
     if (chat){
       console.log("Retrieving chat")
       res.redirect(`/chats/${chat._id}`)
     } else {
     console.log("Making new chat")
     var newChat = Chat()
-    newChat.participants.push(req.body.id)
-    newChat.participants.push(req.user)
+    Jammer.findOne({ addedBy: req.body.id }, function(err, jammer) {
+      if (err) throw err;
+      newChat.participants.push({id: req.body.id, name: jammer.name })
+    })
+    Jammer.findOne({ addedBy: req.user }, function(err, jammer) {
+      if (err) throw err;
+      newChat.participants.push({id: req.user, name: jammer.name })
+    })
     newChat.save(function(err){
       if (err) throw err;
       res.redirect(`/chats/${newChat._id}`);

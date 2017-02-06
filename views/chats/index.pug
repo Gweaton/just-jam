@@ -3,8 +3,9 @@ extends ../../views/layout
 block content
 
     each chat, i in chats
-      div(id="chat-list")
-        h1 #{jammer1.name} & #{jammer2.name}
+      each participant, i in chat.participants
+        div(id="chat-list")
+          h1= participant.name
 
         form(action=`/chats/${chat._id}`)
           button Join

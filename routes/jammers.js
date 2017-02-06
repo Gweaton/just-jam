@@ -36,6 +36,10 @@ router.post('/', upload.single('image'), function(req, res) {
   newJammer.addedBy = req.user
   newJammer.save(function(err) {
     if (err) throw err;
+    req.user.jammer = newJammer
+    req.user.save(function(err){
+      if (err) throw err;
+    })
     res.redirect(`jammers/${newJammer._id}`);
   });
 });
