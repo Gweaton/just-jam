@@ -32,6 +32,8 @@ const upload = multer({
 router.get('/new', isLoggedIn, function(req, res) {
   if (!req.user){
     res.redirect('/')
+  } else if (req.user.jammer) {
+    res.redirect('/users/profile')
   } else {
     res.render('jammers/new', {user: req.user});
   }
