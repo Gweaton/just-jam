@@ -12,16 +12,9 @@ html
     nav(class='navbar-custom navbar navbar-fixed-top')
         div(class="container-fluid")
           div(class="navbar-header")
-            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
-              span(class="sr-only") Toggle navigation
-              span(class="icon-bar")
-              span(class="icon-bar")
-              span(class="icon-bar")
-            a(class='navbar-brand' href='/jammers')
-              img(src="/images/logo.png" class="nav-logo")
-
-            div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
-  
+            div(class="navbar-collapse" id="bs-example-navbar-collapse-1")
+              a(class='navbar-left' href='/jammers')
+                img(src="/images/logo.png" class="nav-logo")
               form(class="navbar-form navbar-left", action='/jammers', method='get')
                 div(class='form-group')
                   select(name ="instruments" class="form-control")
@@ -35,16 +28,23 @@ html
               ul(class="nav navbar-nav navbar-right")
                 li(class="nav-custom")
                   a(href='/jammers/') View all jammers
-                if (user)
-                  li(class="nav-custom")
-                    a(href='/chats') View all chats
-                  li(class="nav-custom")
-                    a(href='/users/profile') My profile
-                  li(class='nav-custom')
-                    a(href='/users/logout') Log Out
-                else
-                  li(class="nav-custom")
-                    a(href='/users/login') Log in
-                  li(class="nav-custom")
-                    a(href='/users/signup') Sign up
+                li(class='dropdown')
+                   a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Dropdown
+                    span(class="caret")
+                   ul(class='dropdown-menu')
+                    if (user)
+                      li
+                        a(href='/chats') View all chats
+                      li
+                        a(href='/users/profile') My profile
+                      li
+                        a(href='/users/logout') Log Out
+                    else
+                      li
+                        a(href='/users/login') Log in
+                      li
+                        a(href='/users/signup') Sign up
+                        
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+
     block content
