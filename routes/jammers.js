@@ -29,8 +29,12 @@ const upload = multer({
   limits: { fileSize: 2000000 }
 });
 
-router.get('/new', function(req, res) {
-  res.render('jammers/new', {user: req.user});
+router.get('/new', isLoggedIn, function(req, res) {
+  if (!req.user){
+    res.redirect('/')
+  } else {
+    res.render('jammers/new', {user: req.user});
+  }
 });
 
 router.post('/', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req, res) {
@@ -63,5 +67,15 @@ router.get('/:id', function(req, res) {
     res.render('jammers/show', { jammer: jammer });
   });
 });
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()){
+    return next();
+  } else {
+    return next(null, false, req.flash('notLoggedIn', 'Please sign up or log in to continue.'));
+    res.redirect('/');
+  }
+}
+
 
 module.exports = router;

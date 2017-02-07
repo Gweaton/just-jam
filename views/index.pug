@@ -2,6 +2,10 @@ extends layout
 
 block content
   body
+    if message.length
+      .alert.alert-danger #{message}
+
+
     div(class="banner-custom")
       div(class="text-center")
         img(src="/images/logo.png")
