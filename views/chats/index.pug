@@ -2,6 +2,7 @@ extends ../../views/layout
 
 block content
 
+  if (chats.length > 0)
     each chat, i in chats
       div(id="chat-list")
         h1= chat.sender
@@ -9,3 +10,6 @@ block content
 
         form(action=`/chats/${chat._id}`)
           button Join
+
+  else
+    h2 No chats
