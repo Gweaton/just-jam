@@ -6,7 +6,6 @@ var Browser = require('zombie');
 var assert = require('assert');
 var mongoose = require('mongoose')
 var User = require('../../models/user');
-var helper = require('./testHelper');
 
 Browser.localhost('localhost', 3001);
 
@@ -14,24 +13,20 @@ describe('User sign up', function() {
 
   const browser = new Browser();
 
-  before(function(done) {
+  before(function() {
     mongoose.model('User').remove({}, function(err) {
       if (err) throw err;
     });
-    browser.visit('users/signup', done)
+    return browser.visit('users/signup')
   });
 
   describe('submits form', function() {
 
-    before(function(done) {
+    before(function() {
       browser
         .fill('email', 'zombie@zombie.com')
         .fill('password', 'zombiez')
-        .pressButton('Submit', done);
-    })
-
-    after(function(done) {
-      browser.clickLink('Log Out', done)
+        return browser.pressButton('Submit');
     })
 
     it('should be successful', function() {
@@ -49,23 +44,22 @@ describe('User sign up', function() {
 
 describe('User is already signed up', function() {
 
-  const browser = new Browser();
-
-  before(function(done) {
+  const browser = new Browser()
+  before(function() {
     mongoose.model('User').remove({}, function(err) {
       if (err) throw err;
     });
     mongoose.model('User').create({"local.email" : "test@test.com", "local.password" :  "testpassword"});
-    browser.visit('users/signup', done)
+    return browser.visit('users/signup')
   });
 
   describe('submits with existing email', function() {
 
-    before(function(done) {
+    before(function() {
       browser
         .fill('email', 'test@test.com')
         .fill('password', 'testpassword')
-        .pressButton('Submit', done);
+      return browser.pressButton('Submit');
     })
 
     it('should raise an error', function() {

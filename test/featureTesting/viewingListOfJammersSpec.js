@@ -12,20 +12,36 @@ var helper = require('./testHelper');
 
 Browser.localhost('localhost', 3001);
 
-describe('Viewing other jammers', function() {
+describe('things', function() {
 
   const browser = new Browser();
 
-  before(function(done) {
+  beforeEach(function() {
     mongoose.model('Jammer').remove({}, function(err) {
       if (err) throw err;
     });
     mongoose.model('Jammer').create({name: "Zombie"});
-    browser.visit('/jammers', done);
+    return browser.visit('jammers/')
   });
 
-  it('should show all the signed up jammers', function() {
-    browser.assert.text('h1', 'Jammers');
-    browser.assert.text('h2', 'Zombie');
+  describe('Viewing other jammers', function() {
+
+    it('should show all the signed up jammers', function() {
+      browser.assert.text('h1', 'Jammers');
+      browser.assert.text('h2', 'Zombie');
+    })
+
   });
+
+  describe('Viewing a single jammer', function() {
+
+    it('should show a single jammer', function() {
+      return browser.clickLink('Show')
+        .then(function(){
+          browser.assert.text('h1', 'Zombie');
+        })
+    })
+
+  });
+
 });
