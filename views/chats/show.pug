@@ -7,7 +7,10 @@ block content
   div(id="all-messages")
 
     each message, i in messages
-      p= message.author + ": " + message.body
+      p
+        b= message.author
+        | : 
+        span= message.body
 
   div(id="chat-messages")
 
