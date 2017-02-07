@@ -40,22 +40,23 @@ describe('Sessions', function() {
 
   });
 
-  // describe('logging in', function() {
-  //
-  //   before(function(done) {
-  //     browser.clickLink('Log in', function() {
-  //       browser
-  //       .fill('email', 'test@test.com')
-  //       .fill('password', 'testpassword')
-  //       .pressButton('Submit', done)
-  //     })
-  //   })
-  //
-  //   it('should take user to Jammers page', function() {
-  //     browser.assert.text('h1', 'Jammers')
-  //   })
-  //
-  // })
+  describe('logging in', function() {
+
+    before(function() {
+      return browser.clickLink('Log in')
+        .then(function() {
+          return browser
+            .fill('email', 'test@test.com')
+            .fill('password', 'testpassword')
+            .pressButton('Submit')
+        })
+    })
+
+    it('should take user to Jammers page', function() {
+      browser.assert.text('h1', 'Jammers')
+    })
+
+  })
 
 
 });
