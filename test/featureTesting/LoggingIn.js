@@ -10,7 +10,6 @@ var helper = require('./testHelper');
 
 Browser.localhost('localhost', 3001);
 
-
 describe('Sessions', function() {
 
   const browser = new Browser();
