@@ -12,7 +12,7 @@ var helper = require('./testHelper');
 
 Browser.localhost('localhost', 3001);
 
-describe('things', function() {
+describe('Seeing all jammers', function() {
 
   const browser = new Browser();
 
