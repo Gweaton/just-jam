@@ -11,7 +11,7 @@ block content
         if message.length
           .alert.alert-danger #{message}
 
-        form(action='/users', method='post')
+        form(id='signup-form', action='/users', method='post')
           div(class="new-form")
             .form-group
               label Email
