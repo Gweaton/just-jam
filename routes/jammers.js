@@ -51,7 +51,7 @@ router.post('/', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req
 
 
 router.get('/', function(req, res, next) {
-  let query = Jammer.find(req.query);
+  let query = Jammer.find(req.query).where('addedBy').ne(req.user);
   query.exec(function(err, jammers) {
     if (err) return console.log(err)
     res.render('jammers/index', {jammers: jammers})
