@@ -31,7 +31,7 @@ router.get('/signup', function(req, res) {
 
 router.get('/profile', isLoggedIn, function(req, res) {
   Jammer.findOne({'_id': req.user.jammer}, function(err, jammer) {
-    if (err) return res.render('users/profile', { user: req.user})
+    if (err) throw err
     res.render('users/profile', { user: req.user, jammer: jammer})
   });
 });

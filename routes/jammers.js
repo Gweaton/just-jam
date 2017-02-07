@@ -70,6 +70,25 @@ router.get('/:id', function(req, res) {
   });
 });
 
+router.get('/edit/:id', function(req, res){
+  Jammer.findOne({ '_id': req.params.id}, function(err, jammer){
+    if (err) throw err;
+    res.render('jammers/edit', { jammer: jammer })
+  })
+})
+
+router.post('/update/:id', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req, res){
+  Jammer.findOneAndUpdate( { '_id': req.params.id}, req.body, {new: true}, function(err, res){
+    if (err) throw err
+    if (req.files['image']) { res.imagePath = req.files['image'][0]['location']}
+    if (req.files['audio']) { res.audioPath = req.files['audio'][0]['location']}
+    res.save(function(err){
+      if (err) throw err
+    })
+  })
+  res.redirect('/users/profile')
+})
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()){
     return next();
