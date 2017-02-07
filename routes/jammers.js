@@ -66,7 +66,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res) {
   Jammer.findOne({'_id': req.params.id}, function(err, jammer) {
-    res.render('jammers/show', { jammer: jammer, user: req.user });
+    res.render('jammers/show', { jammer: jammer });
   });
 });
 
