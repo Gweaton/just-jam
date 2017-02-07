@@ -20,3 +20,6 @@ block content
             p= jammer.genres
             p= jammer.instruments
             p= jammer.bio
+
+            a(href=`/jammers/edit/${jammer._id}`)
+              button(type="button") Edit Profile
