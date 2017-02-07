@@ -14,8 +14,7 @@ block content
     li= jammer.instruments
     li= jammer.bio
 
-    if(user)
-      form(action="/chats/new", method="post")
-        input(type="hidden", name="id", value=`${jammer.addedBy}`)
-        input(type="hidden", name="name", value=`${jammer.name}`)
-        input(type='submit', value="Chat", class="btn btn-default")
+    form(action="/chats/new", method="post")
+      input(type="hidden", name="id", value=`${jammer.addedBy}`)
+      input(type="hidden", name="name", value=`${jammer.name}`)
+      input(type='submit', value="Chat", class="btn btn-default")
