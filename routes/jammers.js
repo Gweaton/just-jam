@@ -1,3 +1,5 @@
+require('../env.js')
+
 const User = require('../models/user')
 const Jammer = require('../models/jammer')
 
@@ -23,30 +25,33 @@ const upload = multer({
     region:  process.env.AWS_REGION,
     acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE
-  })
+  }),
+  limits: { fileSize: 2000000 }
 });
 
 router.get('/new', function(req, res) {
   res.render('jammers/new', {user: req.user});
 });
 
-router.post('/', upload.single('image'), function(req, res) {
-  var newJammer = Jammer(req.body)
-  if (req.file) { newJammer.imagePath = req.file.location }
-  newJammer.addedBy = req.user
-  newJammer.save(function(err) {
-    if (err) throw err;
-    req.user.jammer = newJammer
-    req.user.name = req.body.name
-    req.user.save(function(err){
+router.post('/', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req, res) {
+    var newJammer = Jammer(req.body)
+    if (req.files['image']) { newJammer.imagePath = req.files['image'][0]['location']}
+    if (req.files['audio']) { newJammer.audioPath = req.files['audio'][0]['location']}
+    newJammer.addedBy = req.user._id
+    newJammer.save(function(err) {
       if (err) throw err;
-    })
-    res.redirect(`jammers/${newJammer._id}`);
-  });
+      req.user.jammer = newJammer
+      req.user.name = req.body.name
+      req.user.save(function(err){
+        if (err) throw err;
+      })
+      res.redirect(`jammers/${newJammer._id}`);
+    });
 });
 
+
 router.get('/', function(req, res, next) {
-  let query = Jammer.find({});
+  let query = Jammer.find(req.query);
   query.exec(function(err, jammers) {
     if (err) return console.log(err)
     res.render('jammers/index', {jammers: jammers})

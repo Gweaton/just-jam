@@ -6,6 +6,9 @@ block content
 
   ul
     img(src= jammer.imagePath, class = "img-custom img-responsive")
+    if (jammer.audioPath)
+      audio(controls)
+        source(src= jammer.audioPath)
     li= jammer.location
     li= jammer.genres
     li= jammer.instruments
