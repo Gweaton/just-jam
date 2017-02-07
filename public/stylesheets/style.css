@@ -58,3 +58,11 @@ h1 {
   padding-top: 5px;
   max-height: 40px;
 }
+
+.msg {
+  height: 20px;
+}
+
+#chat {
+  padding: 10px;
+}
