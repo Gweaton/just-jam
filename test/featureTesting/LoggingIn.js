@@ -23,7 +23,7 @@ describe('Sessions', function() {
   });
 
   describe('logging out', function() {
-    //
+
     before(function(done) {
       browser
       .fill('email', 'test@test.com')
@@ -37,23 +37,23 @@ describe('Sessions', function() {
       browser.assert.text('p', "Find your musical soulmates.")
     })
 
-    describe('logging in', function() {
+  });
 
-      before(function(done) {
-        browser.clickLink('Log in', function() {
-          browser
-          .fill('email', 'test@test.com')
-          .fill('password', 'testpassword')
-          .pressButton('Submit', done)
-        })
+  describe('logging in', function() {
+
+    before(function(done) {
+      browser.clickLink('Log in', function() {
+        browser
+        .fill('email', 'test@test.com')
+        .fill('password', 'testpassword')
+        .pressButton('Submit', done)
       })
-
-      it('should be able to login', function() {
-        browser.assert.text('h1', 'Jammers')
-      })
-
     })
 
-  });
+    it('should take user to Jammers page', function() {
+      browser.assert.text('h1', 'Jammers')
+    })
+
+  })
 
 });
