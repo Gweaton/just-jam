@@ -37,7 +37,7 @@ router.post('/', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req
     var newJammer = Jammer(req.body)
     if (req.files['image']) { newJammer.imagePath = req.files['image'][0]['location']}
     if (req.files['audio']) { newJammer.audioPath = req.files['audio'][0]['location']}
-    newJammer.addedBy = req.user._id
+    newJammer.addedBy = req.user
     newJammer.save(function(err) {
       if (err) throw err;
       req.user.jammer = newJammer
