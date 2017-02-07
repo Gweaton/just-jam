@@ -20,25 +20,30 @@ router.get('/', function(req, res){
   })
 });
 
-router.post('/new', urlencodedParser, function(req, res){
-  //check if chat already exists else create a new chat
-  var chat = Chat.findOne({ $and:[ {participants: {id: req.body.id, name: req.body.name }}, {participants:req.user} ]}, function(err, chat){
-    if (chat){
-      console.log("Retrieving chat")
-      res.redirect(`/chats/${chat._id}`)
-    } else {
-      console.log("Making new chat")
-      var newChat = Chat()
-      newChat.participants.push(req.body.id)
-      newChat.participants.push(req.user)
-      newChat.sender = req.body.name
-      newChat.recipient = req.user.name
-      newChat.save(function(err){
-        if (err) throw err;
-        res.redirect(`/chats/${newChat._id}`);
-      })
-    }
-  })
+router.post('/new', isLoggedIn, urlencodedParser, function(req, res){
+  //check if the user is signed in
+  if (!req.user){
+    res.redirect('/')
+  } else {
+    //check if chat already exists else create a new chat
+    var chat = Chat.findOne({ $and:[ {participants: {id: req.body.id, name: req.body.name }}, {participants:req.user} ]}, function(err, chat){
+      if (chat){
+        console.log("Retrieving chat")
+        res.redirect(`/chats/${chat._id}`)
+      } else {
+        console.log("Making new chat")
+        var newChat = Chat()
+        newChat.participants.push(req.body.id)
+        newChat.participants.push(req.user)
+        newChat.sender = req.body.name
+        newChat.recipient = req.user.name
+        newChat.save(function(err){
+          if (err) throw err;
+          res.redirect(`/chats/${newChat._id}`);
+        })
+      }
+    })
+  }
 
 })
 
@@ -54,6 +59,15 @@ router.get('/:id', function(req, res){
     //not sure how to pass through user to the view to populate author
   })
 })
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()){
+    return next();
+  } else {
+    return next(null, false, req.flash('notLoggedIn', 'Please sign up or log in to continue.'));
+    res.redirect('/');
+  }
+}
 
 
 module.exports = router;
