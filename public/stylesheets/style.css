@@ -80,12 +80,20 @@ ul {
   padding: 10px;
 }
 
+.chat-link{
+  color: black;
+  font-size: 15px;
+}
+
+.chat-list{
+}
+
 .jammer-profile-image {
   border-radius: 5px;
 }
 
 .profile-container {
-  background-color: #242628 !important;;
+  background-color: #242628 !important;
   color: white !important;
   border-radius: 2 !important;
 }

@@ -17,14 +17,14 @@ html
                 img(src="/images/logo.png" class="nav-logo")
               form(class="navbar-form navbar-left", action='/jammers', method='get')
                 div(class='form-group')
-                  select(name ="instruments" class="form-control")
+                  select(name ="instruments" class="form-control" id="find-by-instrument")
                     option(value="" disabled="disabled" selected="selected") I am a looking for a...
                     option(value="Singer") Singer
                     option(value="Guitarist") Guitarist
                     option(value="Bassist") Bassist
                     option(value="Keyboardist") Keyboardist
                     option(value="Drummer") Drummer
-                    input(type='submit', value="Search", class="btn btn-default")
+                    input(type='submit', value="Search", class="btn btn-default" id="submit-button")
               ul(class="nav navbar-nav navbar-right")
                 li(class="nav-custom")
                   a(href='/jammers/') View all jammers
@@ -46,5 +46,4 @@ html
                         a(href='/users/signup') Sign up
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
-
     block content
