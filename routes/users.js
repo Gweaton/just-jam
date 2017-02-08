@@ -1,4 +1,4 @@
-
+var methods = require('../methods.js')
 const User = require('../models/user')
 const Jammer = require('../models/jammer')
 
@@ -29,7 +29,7 @@ router.get('/signup', function(req, res) {
   res.render('users/signup', { message: req.flash('signupMessage') });
 });
 
-router.get('/profile', isLoggedIn, function(req, res) {
+router.get('/profile', methods.isLoggedIn, function(req, res) {
   Jammer.findOne({'_id': req.user.jammer}, function(err, jammer) {
     if (err) throw err
     res.render('users/profile', { user: req.user, jammer: jammer})
@@ -50,9 +50,3 @@ router.post('/', urlencodedParser, passport.authenticate('local-signup', {
 }));
 
 module.exports = router;
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
-      return next();
-  res.redirect('/');
-}

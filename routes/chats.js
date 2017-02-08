@@ -1,3 +1,5 @@
+var methods = require('../methods.js')
+
 const User = require('../models/user')
 const Chat = require('../models/chat')
 const Message = require('../models/message')
@@ -20,7 +22,7 @@ router.get('/', function(req, res){
   })
 });
 
-router.post('/new', isLoggedIn, urlencodedParser, function(req, res){
+router.post('/new', methods.isLoggedIn, urlencodedParser, function(req, res){
   //check if the user is signed in
   if (!req.user){
     res.redirect('/')
@@ -32,7 +34,7 @@ router.post('/new', isLoggedIn, urlencodedParser, function(req, res){
         res.redirect(`/chats/${chat._id}`)
       } else {
         console.log("Making new chat")
-        createNewChat(req, res)
+        methods.createNewChat(req, res)
       }
     })
   }
@@ -40,7 +42,6 @@ router.post('/new', isLoggedIn, urlencodedParser, function(req, res){
 })
 
 router.get('/:id', function(req, res){
-  //find specific chat
   Chat.findOne({'_id': req.params.id}, function(err, chat){
     if (err) throw err;
     var messages = Message.find({ chatId: chat._id }, function(err, messages){
@@ -50,27 +51,5 @@ router.get('/:id', function(req, res){
     })
   })
 })
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()){
-    return next();
-  } else {
-    return next(null, false, req.flash('notLoggedIn', 'Please sign up or log in to continue.'));
-    res.redirect('/');
-  }
-}
-
-function createNewChat(req, res){
-  var newChat = Chat()
-  newChat.participants.push(req.body.id)
-  newChat.participants.push(req.user)
-  newChat.sender = req.body.name
-  newChat.recipient = req.user.name
-  newChat.save(function(err){
-    if (err) throw err;
-    res.redirect(`/chats/${newChat._id}`);
-  })
-}
-
 
 module.exports = router;

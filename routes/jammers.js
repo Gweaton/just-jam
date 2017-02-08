@@ -1,4 +1,5 @@
 require('../env.js')
+var methods = require('../methods.js')
 
 const User = require('../models/user')
 const Jammer = require('../models/jammer')
@@ -29,7 +30,7 @@ const upload = multer({
   limits: { fileSize: 2000000 }
 });
 
-router.get('/new', isLoggedIn, function(req, res) {
+router.get('/new', methods.isLoggedIn, function(req, res) {
   if (!req.user){
     res.redirect('/')
   } else if (req.user.jammer) {
@@ -40,8 +41,8 @@ router.get('/new', isLoggedIn, function(req, res) {
 });
 
 router.post('/', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req, res) {
-  newJammer = createNewJammer(req)
-  assignJammerToUser(req, newJammer)
+  newJammer = methods.createNewJammer(req)
+  methods.assignJammerToUser(req, newJammer)
   res.redirect(`jammers/${newJammer._id}`);
 });
 
@@ -68,48 +69,9 @@ router.get('/edit/:id', function(req, res){
 })
 
 router.post('/update/:id', upload.fields([{name: 'image'}, {name: 'audio'}]), function(req, res){
-  updateJammer(req)
+  methods.updateJammer(req)
   res.redirect('/users/profile')
 })
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()){
-    return next();
-  } else {
-    return next(null, false, req.flash('notLoggedIn', 'Please sign up or log in to continue.'));
-    res.redirect('/');
-  }
-}
-
-function createNewJammer(req){
-  var newJammer = Jammer(req.body)
-  if (req.files['image']) { newJammer.imagePath = req.files['image'][0]['location']}
-  if (req.files['audio']) { newJammer.audioPath = req.files['audio'][0]['location']}
-  newJammer.addedBy = req.user
-  newJammer.save(function(err) {
-    if (err) throw err;
-  });
-  return newJammer
-}
-
-function assignJammerToUser(req, jammer){
-  req.user.jammer = jammer
-  req.user.name = req.body.name
-  req.user.save(function(err){
-    if (err) throw err;
-  })
-}
-
-function updateJammer(req){
-  Jammer.findOneAndUpdate( { '_id': req.params.id}, req.body, {new: true}, function(err, res){
-    if (err) throw err
-    if (req.files['image']) { res.imagePath = req.files['image'][0]['location']}
-    if (req.files['audio']) { res.audioPath = req.files['audio'][0]['location']}
-    res.save(function(err){
-      if (err) throw err
-    })
-  })
-}
 
 
 module.exports = router;
