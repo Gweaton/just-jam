@@ -1,3 +1,10 @@
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+
 var Message = require('./models/message')
 var User = require('./models/user')
 var Chat = require('./models/chat')
