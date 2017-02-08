@@ -22,14 +22,14 @@ html
 
               form(class="navbar-form navbar-left", action='/jammers', method='get')
                 div(class='form-group')
-                  select(name ="instruments" class="form-control")
+                  select(name ="instruments" class="search-bar")
                     option(value="" disabled="disabled" selected="selected") I am a looking for a...
                     option(value="Singer") Singer
                     option(value="Guitarist") Guitarist
                     option(value="Bassist") Bassist
                     option(value="Keyboardist") Keyboardist
                     option(value="Drummer") Drummer
-                    input(type='submit', value="Search", class="btn btn-default")
+                    input(type='submit', value="Search", class="btn search-button")
 
           ul(class="nav navbar-nav navbar-right")
             li(class='dropdown')
@@ -44,6 +44,7 @@ html
                   li
                     a(href='/users/logout') Log Out
               else
+
                a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Get Started
                 span(class="caret")
                ul(class='dropdown-menu')
