@@ -137,17 +137,23 @@ ul {
 }
 
 audio {
-  width: 100%;
-margin: 0 auto;
+  width: 500px;
+  margin: 0 auto;
 }
 
 .profile-row {
-  margin-top: 25px;
+  margin: 25px;
   background-color: #242628;
   color: #fff;
+  width: 600px;
   opacity: 0.9;
   padding: 10px;
-  padding-left: 30px;
+}
+
+.centered-chat {
+  align: center;
+  display: inline-block;
+
 }
 
 .search-bar {
