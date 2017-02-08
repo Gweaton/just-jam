@@ -54,7 +54,11 @@ h1 {
 }
 
 .banner-custom {
-  background-color: #eee;
+  margin: 100px;
+  margin-right: 200px;
+  margin-left: 200px;
+  background-color: #242628;
+  color: #fff;
   padding: 100px;
 }
 
