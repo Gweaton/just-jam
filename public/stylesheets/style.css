@@ -85,10 +85,15 @@ ul {
   margin: 20px;
   border-radius: 5px;
 }
-/*
-.chat-message {
-  color: black;
-}*/
+
+.chat-layout {
+  background-color: #242628;
+  color: #242628;
+  opacity: 0.9;
+  padding: 7px;
+  margin: 20px;
+  border-radius: 5px;
+}
 
 .login-page {
   margin-top: 100px;
