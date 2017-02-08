@@ -5,9 +5,8 @@ block content
     .col-sm-8.col-sm-offset-2
       .text-center
         if user.jammer == null
-          | You have not created a profile
-          br
-          a(href=`/jammers/new`)  Create profile
+          h3(class='form-text') You haven't created a profile yet!
+          a(href=`/jammers/new` class='form-text') Create profile
         else
           div
             h1= jammer.name
