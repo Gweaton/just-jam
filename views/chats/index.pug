@@ -2,14 +2,15 @@ extends ../../views/layout
 
 block content
 
-  div(class="container")
+  div(class="chat-layout")
+
 
     if (chats.length > 0)
       h1 Your chats
       each chat, i in chats
         div(id="chat-list" class="panel panel-default")
-          div(class="panel-body")
-            a(href=`/chats/${chat._id}` class="chat-link")
+          a(href=`/chats/${chat._id}` class="chat-link")
+            div(class="panel-body")
               span(class="fa fa-envelope")
               span(class="chat-link")=`  ${chat.sender} and ${chat.recipient}`
 
