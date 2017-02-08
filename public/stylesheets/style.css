@@ -1,9 +1,10 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url('../images/background.jpg');
+  /*background-image: url('../images/background.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover
+  background-size: cover;*/
+  background: #fff;
 }
 
 a {
@@ -16,6 +17,12 @@ nav {
 
 h1 {
   padding: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar-custom {
@@ -73,12 +80,20 @@ h1 {
   padding: 10px;
 }
 
-.jammer-image-list {
-  position:relative;
-  overflow:hidden;
-  padding-bottom:100%;
+.jammer-profile-image {
+  border-radius: 5px;
 }
 
-.jammer-image-list img{
-  position:absolute;
+.profile-container {
+  background-color: #242628 !important;;
+  color: white !important;
+  border-radius: 2 !important;
+}
+
+audio {
+  width: 100%;
+margin: 0 auto;
+}
+
+.profile-row {
 }
