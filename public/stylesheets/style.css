@@ -31,9 +31,11 @@ ul {
 }
 
 .new-form {
-  background-color: #eee;
+  background-color: #242628;
   padding: 20px;
 }
+
+
 
 /*.user-list {
   text-align: center;
@@ -59,12 +61,37 @@ ul {
   color: #fff;
 }
 
+.chat-message:nth-child(even) {
+  color: red;
+}
+
 .banner-custom {
   margin-top: 150px;
   background-color: #242628;
   color: #fff;
   opacity: 0.7;
   padding: 100px;
+}
+
+.chat-layout {
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.9;
+  padding: 7px;
+  margin: 20px;
+
+}
+
+.chat-message {
+  color: white;
+}
+
+.login-page {
+  margin-top: 100px;
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.9;
+  padding: 10px;
 }
 
 .nav-logo {
@@ -104,4 +131,18 @@ margin: 0 auto;
 }
 
 .profile-row {
+}
+
+.search-bar {
+  width: 65%;
+  height: 30px;
+  padding-left: 10px;
+  margin-right: 10px;
+  background-color: white;
+  color: black;
+}
+
+.search-button {
+  height: 30px;
+  background-color: #e6e6e6;
 }
