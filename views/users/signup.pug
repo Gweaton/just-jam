@@ -4,30 +4,27 @@ block content
   body
     .col-sm-8.col-sm-offset-2
       .text-center
-        h1
-          span
-          |  Sign Up
 
         if message.length
           .alert.alert-danger #{message}
+        div(class='login-page')
+          h1 Sign Up
+          form(action='/users/', method='post')
+            div(class="new-form")
+              .form-group
+                label Email
+                input(type='text', name='email', class="form-control")
+              .form-group
+                label Password
+                input(type='password', name='password', class="form-control")
+              div
+                input(type='submit', value='Submit', class="btn btn-default")
 
-        form(action='/users', method='post')
-          div(class="new-form")
-            .form-group
-              label Email
-              input(type='text', name='email', class="form-control")
-
-            .form-group
-              label Password
-              input.form-control(type='password', name='password', class="form-control")
-            div
-              input(type='submit', value='Submit', class="btn btn-default")
-
-          hr
-          span
-            | Already have an account?
-            a(href='/users/login')  Login
-          p
-            | Or go
-            a(href='/')  home
-            | .
+            hr
+            span
+              |  Already have an account?
+              a(href='/users/login')  Log in
+            p
+              | Or go
+              a(href='/')  home
+              | .
