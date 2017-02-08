@@ -1,41 +1,61 @@
 doctype html
 html
   head
+
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+
     title Just Jam
+
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
+
   body
-    nav(class='navbar-custom navbar navbar-fixed-top')
+
+    nav(class='navbar-custom navbar navbar-static-top')
         div(class="container-fluid")
           div(class="navbar-header")
-          div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
-            div(class="nav navbar-nav navbar-left")
-              a(href="/jammers")
+            div(class="navbar-collapse" id="bs-example-navbar-collapse-1")
+              a(class='navbar-left' href='/jammers')
                 img(src="/images/logo.png" class="nav-logo")
-            form(class="navbar-form navbar-left", action='/jammers', method='get')
-              div(class='form-group')
-                select(name ="instruments" class="form-control")
-                  option(value="" disabled="disabled" selected="selected") I am a looking for a...
-                  option(value="Singer") Singer
-                  option(value="Guitarist") Guitarist
-                  option(value="Bassist") Bassist
-                  option(value="Keyboardist") Keyboardist
-                  option(value="Drummer") Drummer
-                  input(type='submit', value="Search", class="btn btn-default")
-            ul(class="nav navbar-nav navbar-right")
-              li(class="nav-custom")
-                a(href='/jammers/') View all jammers
+
+              form(class="navbar-form navbar-left", action='/jammers', method='get')
+                div(class='form-group')
+                  select(name ="instruments" class="search-bar")
+                    option(value="" disabled="disabled" selected="selected") I am a looking for a...
+                    option(value="Singer") Singer
+                    option(value="Guitarist") Guitarist
+                    option(value="Bassist") Bassist
+                    option(value="Keyboardist") Keyboardist
+                    option(value="Drummer") Drummer
+
+                    input(type='submit', value="Search", class="btn search-button")
+
+          ul(class="nav navbar-nav navbar-right")
+            li(class='dropdown')
               if (user)
-                li(class="nav-custom")
-                  a(href='/chats') View all chats
-                li(class="nav-custom")
-                  a(href='/users/profile') My profile
-                li(class='nav-custom')
-                  a(href='/users/logout') Log Out
+               a(class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") #{user.name}
+                span(class="caret")
+               ul(class='dropdown-menu')
+                  li
+                    a(href='/chats') My chats
+                  li
+                    a(href='/users/profile') My profile
+                  li
+                    a(href='/users/logout') Log Out
               else
-                li(class="nav-custom")
-                  a(href='/users/login') Log in
-                li(class="nav-custom")
-                  a(href='/users/signup') Sign up
+
+               a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Get Started
+                span(class="caret")
+               ul(class='dropdown-menu')
+                  li
+                    a(href='/users/login') Log in
+                  li
+                    a(href='/users/signup') Sign up
+
+    script(src='/scripts/jquery-3.1.1.min.js')
+    script(src='/scripts/bootstrap.js')
+
     block content

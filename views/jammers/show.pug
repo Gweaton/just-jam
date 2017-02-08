@@ -2,19 +2,36 @@ extends ../../views/layout
 
 block content
 
-  h1= jammer.name
+  div(class="container")
+    div(class="row profile-row")
 
-  ul
-    img(src= jammer.imagePath, class = "img-custom img-responsive")
-    if (jammer.audioPath)
-      audio(controls)
-        source(src= jammer.audioPath)
-    li= jammer.location
-    li= jammer.genres
-    li= jammer.instruments
-    li= jammer.bio
+      div(class="col-md-8 col-sm-8 col-xs-12")
+        h1= jammer.name
+        img(src= jammer.imagePath, class = "img-responsive jammer-profile-image")
+        h2= jammer.instruments
+        if (jammer.audioPath)
+          h4 Track 1
+          audio(controls)
+            source(src= jammer.audioPath)
+          h4 Track 2
+          audio(controls)
+            source(src= jammer.audioPath)
+          h4 Track 3
+          audio(controls)
+            source(src= jammer.audioPath)
+          br
 
-    form(action="/chats/new", method="post")
-      input(type="hidden", name="id", value=`${jammer.addedBy}`)
-      input(type="hidden", name="name", value=`${jammer.name}`)
-      input(type='submit', value="Chat", class="btn btn-default")
+        ul(class='profile-text')
+          li
+            h3 Location:
+          li= jammer.location
+          li
+            h3 Genres:
+          li= jammer.genres
+          br
+          li Bio:
+          p= jammer.bio
+        form(action="/chats/new", method="post", class='centered-chat')
+          input(type="hidden", name="id", value=`${jammer.addedBy}`)
+          input(type="hidden", name="name", value=`${jammer.name}`)
+          input(type='submit', value=`Chat with ${jammer.name}`, class="btn btn-default")

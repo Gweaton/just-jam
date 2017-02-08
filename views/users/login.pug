@@ -1,31 +1,30 @@
 extends ../layout
 
 block content
-  .col-sm-8.col-sm-offset-2
-    .text-center
-      h1
-        span
-        |  Login
+  body
+    .col-sm-8.col-sm-offset-2
+      .text-center
 
-      if message.length
-        .alert.alert-danger #{message}
+        if message.length
+          .alert.alert-danger #{message}
+        div(class='login-page')
+          h1 Log In
+          form(action='/users/login', method='post')
+            div(class="new-form")
+              .form-group
+                label Email
+                input(type='text', name='email', class="form-control")
+              .form-group
+                label Password
+                input(type='password', name='password', class="form-control")
+              div
+                input(type='submit', value='Submit', class="btn btn-default")
 
-      form(action='/users/login', method='post')
-        div(class="new-form")
-          .form-group
-            label Email
-            input(type='text', name='email', class="form-control")
-          .form-group
-            label Password
-            input(type='password', name='password', class="form-control")
-          div
-            input(type='submit', value='Submit', class="btn btn-default")
-
-        hr
-        span
-          |  Don't have an account?
-          a(href='/users/signup')  Signup
-        p
-          | Or go
-          a(href='/')  home
-          | .
+            hr
+            span
+              |  Don't have an account?
+              a(href='/users/signup')  Sign Up
+            p
+              | Or go
+              a(href='/')  home
+              | .

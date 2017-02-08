@@ -1,6 +1,10 @@
 body {
-  padding-top: 65px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /*background: #fff;*/
 }
 
 a {
@@ -15,33 +19,41 @@ h1 {
   padding: 5px;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
 .navbar-custom {
   list-style: none;
-  background-color: #00b3b3;
+  background-color: #242628;
 }
 
 .new-form {
-  background-color: #eee;
+  background-color: #242628;
   padding: 20px;
 }
 
-.user-list {
+
+
+/*.user-list {
   text-align: center;
   border-bottom: solid 2px #eee;
   height: 330px;
-}
+}*/
 
-.user-list > .img-custom {
+/*.thumbnail > .img-custom {
   display: block;
   margin: 0 auto;
   padding-top: 12px;
   width: 200px;
   height: 200px;
   border-radius: 10%;
-}
+}*/
 
 .nav > .nav-custom > a:hover, .nav > .nav-custom > a:focus {
-  background-color: #269aa0;
+  background-color: #242628;
   color: #fff;
 }
 
@@ -49,9 +61,43 @@ h1 {
   color: #fff;
 }
 
+.chat-message:nth-child(even) {
+  color: red;
+}
+
 .banner-custom {
-  background-color: #eee;
+  margin-top: 150px;
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.7;
   padding: 100px;
+}
+
+.chat-layout {
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.9;
+  padding: 7px;
+  margin: 20px;
+
+}
+
+.chat-message {
+  color: white;
+}
+
+.login-page {
+  margin-top: 100px;
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.9;
+  padding: 10px;
+}
+
+.index-profile {
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.9;
 }
 
 .nav-logo {
@@ -65,4 +111,61 @@ h1 {
 
 #chat {
   padding: 10px;
+}
+
+.chat-link{
+  color: black;
+  font-size: 15px;
+}
+
+.jammer-profile-image {
+  border-radius: 5px;
+  margin-left: 10px;
+  height: 300px;
+  width: 300px;
+}
+
+.profile-container {
+  background-color: #242628 !important;
+  color: white !important;
+  border-radius: 2 !important;
+}
+
+.profile-text {
+  padding-top: 25px;
+  text-align: left;
+}
+
+audio {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.profile-row {
+  margin: 25px;
+  background-color: #242628;
+  color: #fff;
+  width: 600px;
+  opacity: 0.9;
+  padding: 10px;
+}
+
+.centered-chat {
+  align: center;
+  display: inline-block;
+
+}
+
+.search-bar {
+  width: 65%;
+  height: 30px;
+  padding-left: 10px;
+  margin-right: 10px;
+  background-color: white;
+  color: black;
+}
+
+.search-button {
+  height: 30px;
+  background-color: #e6e6e6;
 }
