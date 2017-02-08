@@ -19,7 +19,7 @@ var app = express();
 var server = require('http').Server(app)
 var MongoStore = require('connect-mongo')(session);
 var sessionStore = new MongoStore({mongooseConnection: mongoose.connection})
-
+var methods = require('./methods.js')
 var io = require('socket.io').listen(server)
 var passportSocketIo = require('passport.socketio')
 var socket = require('./socketServer.js')(io)
