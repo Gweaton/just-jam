@@ -32,15 +32,7 @@ router.post('/new', isLoggedIn, urlencodedParser, function(req, res){
         res.redirect(`/chats/${chat._id}`)
       } else {
         console.log("Making new chat")
-        var newChat = Chat()
-        newChat.participants.push(req.body.id)
-        newChat.participants.push(req.user)
-        newChat.sender = req.body.name
-        newChat.recipient = req.user.name
-        newChat.save(function(err){
-          if (err) throw err;
-          res.redirect(`/chats/${newChat._id}`);
-        })
+        createNewChat(req, res)
       }
     })
   }
@@ -56,7 +48,6 @@ router.get('/:id', function(req, res){
         res.render('chats/show', { chat: chat, messages: messages, jammer: jammer })
       })
     })
-    //not sure how to pass through user to the view to populate author
   })
 })
 
@@ -67,6 +58,18 @@ function isLoggedIn(req, res, next) {
     return next(null, false, req.flash('notLoggedIn', 'Please sign up or log in to continue.'));
     res.redirect('/');
   }
+}
+
+function createNewChat(req, res){
+  var newChat = Chat()
+  newChat.participants.push(req.body.id)
+  newChat.participants.push(req.user)
+  newChat.sender = req.body.name
+  newChat.recipient = req.user.name
+  newChat.save(function(err){
+    if (err) throw err;
+    res.redirect(`/chats/${newChat._id}`);
+  })
 }
 
 
