@@ -94,6 +94,12 @@ ul {
   padding: 10px;
 }
 
+.index-profile {
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.9;
+}
+
 .nav-logo {
   padding-top: 5px;
   max-height: 40px;
@@ -112,11 +118,11 @@ ul {
   font-size: 15px;
 }
 
-.chat-list{
-}
-
 .jammer-profile-image {
   border-radius: 5px;
+  margin-left: 10px;
+  height: 300px;
+  width: 300px;
 }
 
 .profile-container {
@@ -125,12 +131,23 @@ ul {
   border-radius: 2 !important;
 }
 
+.profile-text {
+  padding-top: 25px;
+  text-align: left;
+}
+
 audio {
   width: 100%;
 margin: 0 auto;
 }
 
 .profile-row {
+  margin-top: 25px;
+  background-color: #242628;
+  color: #fff;
+  opacity: 0.9;
+  padding: 10px;
+  padding-left: 30px;
 }
 
 .search-bar {

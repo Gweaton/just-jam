@@ -3,34 +3,37 @@ extends ../../views/layout
 block content
 
   div(class="container")
-    //- div(class="jumbotron profile-container")
     div(class="row profile-row")
 
-      div(class="col-md-5 col-sm-6 col-xs-12")
+      div(class="col-md-6 col-sm-6 col-xs-12")
+        h1= jammer.name
         img(src= jammer.imagePath, class = "img-responsive jammer-profile-image")
-        br
         if (jammer.audioPath)
+          h4 Track 1
           audio(controls)
             source(src= jammer.audioPath)
-      div(class="col-md-7 col-sm-6 col-xs-12")
-        ul
-          li
-            h2= jammer.name
-          li
-            h4= jammer.instruments
+          h4 Track 2
+          audio(controls)
+            source(src= jammer.audioPath)
+          h4 Track 3
+          audio(controls)
+            source(src= jammer.audioPath)
           br
+
+      div(class="col-md-6 col-sm-6 col-xs-12")
+        ul(class='profile-text')
           li
-            strong Location
+            h3= jammer.instruments
+          li
+            h3 Location:
           li= jammer.location
-          br
           li
-            strong Genres
+            h3 Genres:
           li= jammer.genres
           br
-
-          li= jammer.bio
-
-        form(action="/chats/new", method="post")
+          br
+          p= jammer.bio
+        form(action="/chats/new", method="post" class='profile-text')
           input(type="hidden", name="id", value=`${jammer.addedBy}`)
           input(type="hidden", name="name", value=`${jammer.name}`)
           input(type='submit', value=`Chat with ${jammer.name}`, class="btn btn-default")
