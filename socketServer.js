@@ -5,15 +5,14 @@ var mongoose = require('mongoose');
 var app = express()
 var server = require('http').Server(app)
 var io = require('socket.io').listen(server)
+var passport = require('passport');
 var passportSocketIo = require('passport.socketio')
 var MongoStore = require('connect-mongo')(session);
-var sessionStore = new MongoStore({mongooseConnection: mongoose.connection})
-
 var Chat = require('./models/chat')
 var Message = require('./models/message')
 
-module.exports = function(io){
-//socket authentication
+module.exports = function(io, sessionStore){
+// socket authentication
   io.use(passportSocketIo.authorize({
     cookieParser: cookieParser,
     secret: 'shhsecret',
@@ -65,5 +64,4 @@ module.exports = function(io){
     if(error)
       accept(new Error(message));
   }
-
 }
