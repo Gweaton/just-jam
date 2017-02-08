@@ -3,9 +3,9 @@ extends ../../views/layout
 block content
 
   div(class="container")
-    div(class="row profile-row")
 
-      div(class="col-md-8 col-sm-8 col-xs-12")
+    div(class="profile-row")
+
         h1= jammer.name
         img(src= jammer.imagePath, class = "img-responsive jammer-profile-image")
         h2= jammer.instruments
@@ -23,14 +23,17 @@ block content
 
         ul(class='profile-text')
           li
-            h3 Location:
+            strong Location
           li= jammer.location
+          br
           li
-            h3 Genres:
+            strong Genres
           li= jammer.genres
           br
-          li Bio:
+          li
+            strong Bio
           p= jammer.bio
+          br
         form(action="/chats/new", method="post", class='centered-chat')
           input(type="hidden", name="id", value=`${jammer.addedBy}`)
           input(type="hidden", name="name", value=`${jammer.name}`)

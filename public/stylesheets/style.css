@@ -86,14 +86,15 @@ ul {
   border-radius: 5px;
 }
 
-.chat-layout {
+.chat-index-layout {
   background-color: #242628;
-  color: #242628;
+  color: #fff;
   opacity: 0.9;
   padding: 7px;
   margin: 20px;
   border-radius: 5px;
 }
+
 
 .login-page {
   margin-top: 100px;
@@ -146,17 +147,27 @@ ul {
 }
 
 audio {
-  width: 500px;
+  width: 95%;
   margin: 0 auto;
 }
 
 .profile-row {
-  margin: 25px;
+  margin: 0px;
   background-color: #242628;
   color: #fff;
-  width: 600px;
   opacity: 0.9;
   padding: 10px;
+  border-radius: 5px;
+}
+
+
+.chat-layout {
+  background-color: #242628;
+  color: #242628;
+  opacity: 0.9;
+  padding: 7px;
+  margin: 20px;
+  border-radius: 5px;
 }
 
 .centered-chat {
