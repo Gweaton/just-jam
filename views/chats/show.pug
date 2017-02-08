@@ -3,21 +3,24 @@ extends ../../views/layout
 block content
 
   div(class='chat-layout')
-    h1 Your conversation:
-
-      div(id="all-messages" class='all-messages')
+      div(id="all-messages")
 
         each message, i in messages
-          div(class='chat-message')
-            b= message.author
+          div(class='panel panel-default chat-message')
+            b=message.author
             | :
-            span= " " + message.body
+            span= "  " + message.body
+
 
       div(id="chat-messages")
 
         form(id="send-message" action="")
-          input(id="message" autocomplete="off")
-          input(type="submit", value="Send")
+          input(id="message" autocomplete="off" placeholder="Your message...")
+          button(type='submit' form='send-message')
+            span(class="fa fa-music")
+
+          //- input(type="submit", value=">")
+
 
       script(src="/socket.io/socket.io.js")
       script(src="http://code.jquery.com/jquery-latest.min.js")
@@ -37,7 +40,7 @@ block content
           })
 
           socket.on('new message', function(data){
-            $('#all-messages').append("<div class='chat-message'><b>" + data.author + "</b>: " + data.message + "</p>")
+            $('#all-messages').append("<div class='panel panel-default chat-message'><b>" + data.author + "</b>: " + data.message + "</div>")
           })
 
         })

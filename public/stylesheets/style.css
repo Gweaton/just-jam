@@ -62,7 +62,11 @@ ul {
 }
 
 .chat-message:nth-child(even) {
-  color: red;
+  color: #428bca;
+}
+
+.chat-message:nth-child(odd) {
+  color: #242628;
 }
 
 .banner-custom {
@@ -75,15 +79,20 @@ ul {
 
 .chat-layout {
   background-color: #242628;
-  color: #fff;
+  color: #242628;
   opacity: 0.9;
   padding: 7px;
   margin: 20px;
-
+  border-radius: 5px;
 }
 
-.chat-message {
-  color: white;
+.chat-layout {
+  background-color: #242628;
+  color: #242628;
+  opacity: 0.9;
+  padding: 7px;
+  margin: 20px;
+  border-radius: 5px;
 }
 
 .login-page {
