@@ -2,14 +2,19 @@ extends ../../views/layout
 
 block content
 
-  if (chats.length > 0)
-    each chat, i in chats
-      div(id="chat-list")
-        h1= chat.sender
-        h1= chat.recipient
+  div(class="container")
 
-        form(action=`/chats/${chat._id}`)
-          button Join
+    if (chats.length > 0)
+      h1 Your chats
+      each chat, i in chats
+        div(id="chat-list" class="panel panel-default")
+          div(class="panel-body")
+            a(href=`/chats/${chat._id}` class="chat-link")
+              span(class="fa fa-envelope")
+              span(class="chat-link")=`  ${chat.sender} and ${chat.recipient}`
 
-  else
-    h2 No chats
+          //- form(action=`/chats/${chat._id}`)
+          //-   button Join
+
+    else
+      h2 No chats
