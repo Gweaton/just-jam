@@ -35,6 +35,11 @@ ul {
   width: 200px;
 }
 
+.img-index {
+  display: block;
+  margin: 0 auto;
+}
+
 .new-form {
   background-color: #242628;
   padding: 20px;
