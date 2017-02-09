@@ -8,9 +8,9 @@ block content
 
       each jammer, i in jammers
           div(class="col-md-4 col-sm-6 col-xs-12")
-            div(class="thumbnail index-profile")
+            div(class="thumbnail index-profile profile")
               a(href=`/jammers/${jammer._id}`)
-                img(src= jammer.imagePath, class="img-responsive")
+                img(src= jammer.imagePath, class="img-responsive img-list")
               div(class="caption")
                 h3=jammer.name
                 p= jammer.instruments

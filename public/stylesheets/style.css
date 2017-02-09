@@ -30,12 +30,19 @@ ul {
   background-color: #242628;
 }
 
+.img-list {
+  height: 200px;
+  width: 200px;
+}
+
 .new-form {
   background-color: #242628;
   padding: 20px;
 }
 
-
+.form-text {
+  color: #fff;
+}
 
 /*.user-list {
   text-align: center;
