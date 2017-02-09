@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
-require('../env.js')
+
 var methods = require('../methods.js')
 
->>>>>>> 9fa15e4dcb779b489696940beeaeeddda481860b
 const User = require('../models/user')
 const Jammer = require('../models/jammer')
 
