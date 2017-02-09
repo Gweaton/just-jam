@@ -76,6 +76,14 @@ ul {
   padding: 100px;
 }
 
+.navbar-nav > li > .dropdown-menu {
+  background-color: #242628;
+}
+
+.navbar-nav > li > .dropdown-menu a {
+  color: #fff;
+}
+
 .chat-layout {
   background-color: #242628;
   color: #242628;
