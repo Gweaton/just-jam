@@ -30,9 +30,23 @@ ul {
   background-color: #242628;
 }
 
+.img-list {
+  height: 200px;
+  width: 200px;
+}
+
+.img-index {
+  display: block;
+  margin: 0 auto;
+}
+
 .new-form {
   background-color: #242628;
   padding: 20px;
+}
+
+.form-text {
+  color: #fff;
 }
 
 .nav > .nav-custom > a:hover, .nav > .nav-custom > a:focus {
@@ -65,6 +79,15 @@ ul {
 .chat-layout {
   background-color: #242628;
   color: #242628;
+  opacity: 0.9;
+  padding: 7px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.chat-index-layout {
+  background-color: #242628;
+  color: #fff;
   opacity: 0.9;
   padding: 7px;
   margin: 20px;
@@ -122,17 +145,27 @@ ul {
 }
 
 audio {
-  width: 500px;
+  width: 95%;
   margin: 0 auto;
 }
 
 .profile-row {
-  margin: 25px;
+  margin: 0px;
   background-color: #242628;
   color: #fff;
-  width: 600px;
   opacity: 0.9;
   padding: 10px;
+  border-radius: 5px;
+}
+
+
+.chat-layout {
+  background-color: #242628;
+  color: #242628;
+  opacity: 0.9;
+  padding: 7px;
+  margin: 20px;
+  border-radius: 5px;
 }
 
 .centered-chat {
