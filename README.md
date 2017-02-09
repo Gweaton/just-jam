@@ -30,6 +30,14 @@ Musicians looking to find their musical soul mate can get in touch and organise 
 
 ### User stories
 
+### Objectives
+
+### Process
+
+### Struggles
+
+### Successes
+
 ** MVP **
 
 ```
