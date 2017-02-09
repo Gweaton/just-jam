@@ -35,23 +35,6 @@ ul {
   padding: 20px;
 }
 
-
-
-/*.user-list {
-  text-align: center;
-  border-bottom: solid 2px #eee;
-  height: 330px;
-}*/
-
-/*.thumbnail > .img-custom {
-  display: block;
-  margin: 0 auto;
-  padding-top: 12px;
-  width: 200px;
-  height: 200px;
-  border-radius: 10%;
-}*/
-
 .nav > .nav-custom > a:hover, .nav > .nav-custom > a:focus {
   background-color: #242628;
   color: #fff;
@@ -63,14 +46,16 @@ ul {
 
 .chat-message:nth-child(even) {
   color: #428bca;
+  padding-left: 10px;
 }
 
 .chat-message:nth-child(odd) {
   color: #242628;
+  padding-left: 10px;
 }
 
 .banner-custom {
-  margin-top: 150px;
+  margin-top: 50px;
   background-color: #242628;
   color: #fff;
   opacity: 0.7;
@@ -86,17 +71,8 @@ ul {
   border-radius: 5px;
 }
 
-.chat-layout {
-  background-color: #242628;
-  color: #242628;
-  opacity: 0.9;
-  padding: 7px;
-  margin: 20px;
-  border-radius: 5px;
-}
-
 .login-page {
-  margin-top: 100px;
+  margin-top: 50px;
   background-color: #242628;
   color: #fff;
   opacity: 0.9;
