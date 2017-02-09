@@ -7,13 +7,13 @@ $(document).ready(function(){
     socket.emit('send message', {
       message: $('#message').val(),
       room: "#{chat._id}",
-      author: "#{user.name}"
+      author: "#{jammer.name}"
     })
     $('#message').val('')
   })
 
   socket.on('new message', function(data){
-    $('#chat-messages').append("<div class='msg'>" + data.author + ": " + data.message + "</div>")
+    $('#all-messages').append("<p><b>" + data.author + "</b>: " + data.message + "</p>")
   })
 
 })

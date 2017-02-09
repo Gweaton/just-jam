@@ -2,6 +2,7 @@ extends ../../views/layout
 
 block content
 
+<<<<<<< HEAD
   div(class='chat-layout')
       div(id="all-messages")
 
@@ -39,5 +40,43 @@ block content
           socket.on('new message', function(data){
             $('#all-messages').append("<div class='panel panel-default chat-message'><b>" + data.author + "</b>: " + data.message + "</div>")
           })
+=======
+  h1 Your conversation:
+
+  div(id="all-messages")
+
+    each message, i in messages
+      p
+        b= message.author
+        | :
+        span= message.body
+
+  div(id="chat-messages")
+
+    form(id="send-message" action="")
+      input(id="message" autocomplete="off")
+      input(type="submit", value="Send")
+
+  script(src="/socket.io/socket.io.js")
+  script(src="http://code.jquery.com/jquery-latest.min.js")
+  script.
+    $(document).ready(function(){
+      var socket = io.connect();
+      socket.emit('request_join', { id: "#{chat._id}" })
+
+      $('#send-message').submit(function(e){
+        e.preventDefault();
+        socket.emit('send message', {
+          message: $('#message').val(),
+          room: "#{chat._id}",
+          author: "#{jammer.name}"
+        })
+        $('#message').val('')
+      })
+
+      socket.on('new message', function(data){
+        $('#all-messages').append("<p><b>" + data.author + "</b>: " + data.message + "</p>")
+      })
+>>>>>>> 9fa15e4dcb779b489696940beeaeeddda481860b
 
         })
