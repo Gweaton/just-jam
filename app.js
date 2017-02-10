@@ -69,5 +69,4 @@ app.use('/jammers', jammers);
 require('./config/passport')(passport);
 require('./socketServer.js')(io, sessionStore)
 
-
 module.exports = app;

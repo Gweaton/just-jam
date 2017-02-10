@@ -6,9 +6,9 @@ http://just-jam.herokuapp.com/
 
 Just Jam is a web app that connects musicians looking to start a band together.
 
-Users sign up and create their own profile, specifying what instrument they play, their favourite genres, their location, and little about themselves. 
+Users sign up and create their own profile, specifying what instrument they play, their favourite genres, their location, and a little about themselves. 
 
-Musicians looking to start a band or bands missing that important element can get in touch and organise a jam session.
+Musicians looking to find their musical soul mate can get in touch and organise a jam session.
 
 
 ## Built With
@@ -29,6 +29,14 @@ Musicians looking to start a band or bands missing that important element can ge
  - Zombie.js
 
 ### User stories
+
+### Objectives
+
+### Process
+
+### Struggles
+
+### Successes
 
 ** MVP **
 
