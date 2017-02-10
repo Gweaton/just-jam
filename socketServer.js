@@ -31,7 +31,6 @@ module.exports = function(io, sessionStore){
     })
     //sending a new message to a room
     socket.on('send message', function(data){
-      console.log(data)
       io.sockets.in(data.room).emit('new message', { author:data.author, message: data.message });
       //save message to conversation(data.room)
       var chat = Chat.findOne({'_id': data.room}, function(err, chat){
