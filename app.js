@@ -1,5 +1,3 @@
-
-
 var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -69,62 +67,6 @@ app.use('/chats', chats);
 app.use('/jammers', jammers);
 
 require('./config/passport')(passport);
-
-//socket authentication
-io.use(passportSocketIo.authorize({
-  cookieParser: cookieParser,
-  secret: 'shhsecret',
-  store: sessionStore,
-  success: onAuthorizeSuccess,
-  fail: onAuthorizeFail
-}))
-
-//socket handling
-io.sockets.on('connection', function(socket){
-  socket.on('request_join', function(data){
-    console.log("requesting join")
-    //if the user is authorized
-    if(socket.request.user.logged_in){
-        socket.join(data.id)
-      }
-    // }
-  })
-  //sending a new message to a room
-  socket.on('send message', function(data){
-    console.log(data)
-    io.sockets.in(data.room).emit('new message', { author:data.author, message: data.message });
-    //save message to conversation(data.room)
-    var chat = Chat.findOne({'_id': data.room}, function(err, chat){
-      if (err) throw err;
-      //eventually need to pass user to message model
-      var message = Message({ chatId: data.room, body: data.message, author: data.author})
-      message.save(function(err){
-        if (err) throw err
-        chat.messages.push(message)
-        chat.save(function(err){
-          if (err) throw err
-        })
-      })
-    })
-  })
-
-  socket.on('disconnect', function(data){
-    socket.leave(data)
-  })
-})
-
-
-function onAuthorizeSuccess(data, accept){
-  console.log('successful connection to socket.io');
-  accept();
-}
-
-function onAuthorizeFail(data, message, error, accept){
-  if(error)
-    throw new Error(message);
-  console.log('failed connection to socket.io:', message);
-  if(error)
-    accept(new Error(message));
-}
+require('./socketServer.js')(io, sessionStore)
 
 module.exports = app;

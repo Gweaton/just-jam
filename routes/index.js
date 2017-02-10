@@ -1,3 +1,4 @@
+var methods = require('../methods.js')
 var express = require('express');
 var passport = require('passport');
 var router = express.Router();
