@@ -10,6 +10,11 @@ Users sign up and create their own profile, specifying what instrument they play
 
 Musicians looking to find their musical soul mate can get in touch and organise a jam session.
 
+## Additional Contributors
+
+Chris Cooper - https://github.com/cjcoops
+Jenna Ramdenee - https://github.com/jennaramdenee
+Rory Grieve - https://github.com/rorygrieve
 
 ## Built With
 
@@ -28,8 +33,6 @@ Musicians looking to find their musical soul mate can get in touch and organise 
  - Sinon
  - Zombie.js
 
-### User stories
-
 ### Objectives
 
 ### Process
@@ -38,6 +41,7 @@ Musicians looking to find their musical soul mate can get in touch and organise 
 
 ### Successes
 
+### User stories
 ** MVP **
 
 ```
