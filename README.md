@@ -12,9 +12,9 @@ Musicians looking to find their musical soul mate can get in touch and organise 
 
 ## Additional Contributors
 
-Chris Cooper - https://github.com/cjcoops
-Jenna Ramdenee - https://github.com/jennaramdenee
-Rory Grieve - https://github.com/rorygrieve
+- Chris Cooper - https://github.com/cjcoops
+- Jenna Ramdenee - https://github.com/jennaramdenee
+- Rory Grieve - https://github.com/rorygrieve
 
 ## Built With
 
