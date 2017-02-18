@@ -1,20 +1,16 @@
 # Just Jam
 
-## Find your musical soulmates!
+#### Find your musical soulmates!
 
-http://just-jam.herokuapp.com/
+![alt tag](public/images/screenshot.png)
 
-Just Jam is a web app that connects musicians looking to start a band together.
+Just Jam is a mobile responsive web app that connects musicians looking to start a band together.
 
-Users sign up and create their own profile, specifying what instrument they play, their favourite genres, their location, and a little about themselves. 
+Users can sign up, create their own profile and upload sound clips of themselves. They can then search for other users and if they like what they hear can start a chat and organise a jam session.
 
-Musicians looking to find their musical soul mate can get in touch and organise a jam session.
+Use it on Heroku [here](http://just-jam.herokuapp.com/).
 
-## Additional Contributors
-
-- Chris Cooper - https://github.com/cjcoops
-- Jenna Ramdenee - https://github.com/jennaramdenee
-- Rory Grieve - https://github.com/rorygrieve
+Just Jam was built by [George Eaton](https://github.com/gweaton), [Chris Cooper](https://github.com/cjcoops), [Jenna Ramdenee]( https://github.com/jennaramdenee) and [Rory Grieve](https://github.com/rorygrieve) in 8 days as our final project at Makers Academy.
 
 ## Built With
 
