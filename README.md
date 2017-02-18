@@ -23,6 +23,15 @@ Technologies
 - Write clean and tested code
 
 ### Process
+- Initial meeting to decide on MVP, user stories, and technologies
+- Group diagramming session to agree on the flow around the app
+- Follow tutorials on building a web app using Node and Express and testing with Mocha and Chai
+- Apply what we had learnt from the tutorials to start building our app using our user stories working in pairs
+- We initially wanted to use React for the front end but quickly realised this was unrealistic in the timescale and agreed to use the templating engine, Pug.
+- After reaching MVP in 3 days, we decided on our next features - user authentication and adding music upload. We worked in pairs to achieve these 2 features.
+- Follow tutorials on web sockets to add the chat functionality to our app
+- Feature freeze on day 7
+- We then worked on making our app responsive for mobile using Bootstrap
 
 ### Struggles
 - Deciding on frameworks and Technologies
@@ -33,7 +42,10 @@ Technologies
 - Minimum viable product in 3 days
 - Clear understanding of what our app was throughout
 - Learnt new frameworks and languages and about no SQL databases
+- Regular communication, daily standups and retros
 - Dividing up tasks fairly and ensuring everyone had an understanding of all parts of the project
+- Using web sockets to enable chat messaging in real time
+- Having lots of fun
 
 
 
