@@ -12,30 +12,30 @@ Use it on Heroku [here](http://just-jam.herokuapp.com/).
 
 Just Jam was built by [George Eaton](https://github.com/gweaton), [Chris Cooper](https://github.com/cjcoops), [Jenna Ramdenee]( https://github.com/jennaramdenee) and [Rory Grieve](https://github.com/rorygrieve) in 8 days as our final project at Makers Academy.
 
-## Built With
-
- - Node.js
- - Express.js
- - Mongoose
- - MongoDB
- - JavaScript
- - Socket.io
- - Pug, CSS & Bootstrap
-
-### Testing
-
- - Mocha
- - Chai
- - Sinon
- - Zombie.js
+Technologies
+----------
+![alt tag](public/images/technology.png)
 
 ### Objectives
+- Build a full stack mobile responsive web app using Node.js
+- Learn technologies we had not previously used in our time at Makers (Node.js, MongoDB, Web Sockets, Mocha, Zombie etc.)
+- Work as part of an agile team following XP principles
+- Write clean and tested code
 
 ### Process
 
 ### Struggles
+- Deciding on frameworks and Technologies
+- Learning new testing frameworks at the same time as learning new technologies
+- Conflicts when merging code with conflicting dependencies
 
 ### Successes
+- Minimum viable product in 3 days
+- Clear understanding of what our app was throughout
+- Learnt new frameworks and languages and about no SQL databases
+- Dividing up tasks fairly and ensuring everyone had an understanding of all parts of the project
+
+
 
 ### User stories
 ** MVP **
